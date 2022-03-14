@@ -1,0 +1,50 @@
+<div align="center">
+<img src="https://i.imgur.com/ZgcOdsN.png" alt="Pearl">
+  
+## Pearl Project
+
+[![Build status](https://img.shields.io/github/workflow/status/minhh2792/Pearl/build?event=push&logo=github)](https://github.com/minhh2792/Pearl/actions)
+[![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.18.2&color=green&logo=java)](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-18-2)
+[![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/ZFAtK5Mx9w)
+  
+Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers optimization and stability
+  
+</div>
+
+## Features
+
+* Better handling of async tasks
+* DataConverter for itemstack entity
+* Optimize despawn
+* Alternate Current redstone
+* Improved hopper performance
+* Reduction in unnecessary packets
+* ....and could be many more :)
+
+> Note: This fork meant to stable, so I won't implement Fabric patches
+
+## Download
+
+You can download the latest build of Pearl at [Release](https://github.com/minhh2792/Pearl/releases)
+
+## If you want to build it yourself
+
+* Clone this repo
+* `./gradlew applyPatches` to apply all the patches
+* `./gradlew createReobfPaperclipJar` to get the PaperclipJar
+
+See [Purpur CONTRIBUTING.md](https://github.com/PurpurMC/Purpur/blob/ver/1.18.2/CONTRIBUTING.md) for more detailed information about patch system.
+
+## Credit
+
+Pearl has patches from the following fork:
+
+* [JettPack](https://gitlab.com/Titaniumtown/JettPack)
+* [Patina](https://github.com/PatinaMC/Patina)
+* [Akarin](https://github.com/Akarin-project/Akarin)
+* [EMC](https://github.com/starlis/empirecraft)
+* [Slice](https://github.com/Cryptite/Slice)
+
+Upstream: [Purpur](https://github.com/PurpurMC/Purpur)
+
+<a href="https://www.flaticon.com/free-icons/pearl" title="pearl icons">Pearl icons created by Freepik - Flaticon</a>
