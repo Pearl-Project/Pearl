@@ -3,7 +3,7 @@
   
 ## Pearl Project
 
-[![Build status](https://img.shields.io/github/workflow/status/minhh2792/Pearl/build?event=push&logo=github)](https://github.com/minhh2792/Pearl/actions)
+[![Build status](https://img.shields.io/github/workflow/status/minhh2792/Pearl/Build?logo=github)](https://github.com/minhh2792/Pearl/actions)
 [![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.18.2&color=green&logo=java)](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-18-2)
 [![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/ZFAtK5Mx9w)
   
