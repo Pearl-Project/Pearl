@@ -1,0 +1,84 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Simon Gardling <titaniumtown@gmail.com>
+Date: Mon, 6 Dec 2021 10:34:33 -0500
+Subject: [PATCH] remove spigot tick limiter
+
+
+diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
+index c29fdc40b72da7ca18a1c0bbcf02162799458063..acb3a6350cd83d8693d15511a0370e9bb04a08eb 100644
+--- a/src/main/java/net/minecraft/world/level/Level.java
++++ b/src/main/java/net/minecraft/world/level/Level.java
+@@ -168,8 +168,10 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+ 
+     public final co.aikar.timings.WorldTimingsHandler timings; // Paper
+     public static BlockPos lastPhysicsProblem; // Spigot
+-    private org.spigotmc.TickLimiter entityLimiter;
+-    private org.spigotmc.TickLimiter tileLimiter;
++    // JettPack start - remove tick limiter
++    // private org.spigotmc.TickLimiter entityLimiter;
++    // private org.spigotmc.TickLimiter tileLimiter;
++    // JettPack end
+     private int tileTickPosition;
+     public final Map<Explosion.CacheKey, Float> explosionDensityCache = new HashMap<>(); // Paper - Optimize explosions
+     public java.util.ArrayDeque<net.minecraft.world.level.block.RedstoneTorchBlock.Toggle> redstoneUpdateInfos; // Paper - Move from Map in BlockRedstoneTorch to here
+@@ -401,8 +403,10 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+         // CraftBukkit end
+         timings = new co.aikar.timings.WorldTimingsHandler(this); // Paper - code below can generate new world and access timings
+         this.keepSpawnInMemory = this.paperConfig.keepSpawnInMemory; // Paper
+-        this.entityLimiter = new org.spigotmc.TickLimiter(spigotConfig.entityMaxTickTime);
+-        this.tileLimiter = new org.spigotmc.TickLimiter(spigotConfig.tileMaxTickTime);
++        // JettPack start - remove tick limiter
++        // this.entityLimiter = new org.spigotmc.TickLimiter(spigotConfig.entityMaxTickTime);
++        // this.tileLimiter = new org.spigotmc.TickLimiter(spigotConfig.tileMaxTickTime);
++        // JettPack end
+         this.chunkPacketBlockController = this.paperConfig.antiXray ? new com.destroystokyo.paper.antixray.ChunkPacketBlockControllerAntiXray(this, executor) : com.destroystokyo.paper.antixray.ChunkPacketBlockController.NO_OPERATION_INSTANCE; // Paper - Anti-Xray
+         this.entitySliceManager = new io.papermc.paper.world.EntitySliceManager((ServerLevel)this); // Paper
+     }
+diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+index 31a447e6e156b7b244b2ac69a9c03c09c7ed388c..c7c696138ecc358a79abcf7d45007a6008ae4c90 100644
+--- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
++++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+@@ -433,6 +433,8 @@ public class SpigotWorldConfig
+         this.hangingTickFrequency = this.getInt( "hanging-tick-frequency", 100 );
+     }
+ 
++    // JettPack start - remove tick limiter
++    /*
+     public int tileMaxTickTime;
+     public int entityMaxTickTime;
+     private void maxTickTimes()
+@@ -441,6 +443,8 @@ public class SpigotWorldConfig
+         this.entityMaxTickTime = this.getInt("max-tick-time.entity", 50);
+         this.log("Tile Max Tick Time: " + this.tileMaxTickTime + "ms Entity max Tick Time: " + this.entityMaxTickTime + "ms");
+     }
++    */
++    // JettPack end
+ 
+     public int thunderChance;
+     private void thunderChance()
+diff --git a/src/main/java/org/spigotmc/TickLimiter.java b/src/main/java/org/spigotmc/TickLimiter.java
+deleted file mode 100644
+index 4074538ea6090bf99d8ab04b1e98c2832a0e9a98..0000000000000000000000000000000000000000
+--- a/src/main/java/org/spigotmc/TickLimiter.java
++++ /dev/null
+@@ -1,20 +0,0 @@
+-package org.spigotmc;
+-
+-public class TickLimiter {
+-
+-    private final int maxTime;
+-    private long startTime;
+-
+-    public TickLimiter(int maxtime) {
+-        this.maxTime = maxtime;
+-    }
+-
+-    public void initTick() {
+-        this.startTime = System.currentTimeMillis();
+-    }
+-
+-    public boolean shouldContinue() {
+-        long remaining = System.currentTimeMillis() - this.startTime;
+-        return remaining < this.maxTime;
+-    }
+-}
