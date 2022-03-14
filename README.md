@@ -21,7 +21,7 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Reduction in unnecessary packets
 * ....and could be many more :)
 
-> Note: This fork meant to stable, so I won't implement Fabric patches
+> ⚠️ We are still in the progress of testing, to make sure it stable enough to use on production. Right now you can download and use Pearl, but remember to backup your server in case of anything go wrong. Pearl meant to be stable, so I won't implement any Fabric patches to it. 
 
 ## Download
 
