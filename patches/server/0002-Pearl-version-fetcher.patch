@@ -5,7 +5,7 @@ Subject: [PATCH] Pearl version fetcher
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index fba5dbdb7bcbb55400ef18342c9b54612972a718..cbd4518669b9b879a4e1fc8c17113a976fbbe5c7 100644
+index fba5dbdb7bcbb55400ef18342c9b54612972a718..fb05cd9d6fd516d0ca390aa6921299c27e3adf71 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 @@ -19,10 +19,9 @@ import java.util.stream.StreamSupport;
@@ -17,7 +17,7 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..cbd4518669b9b879a4e1fc8c17113a97
 -    private static int distance = -2; public int distance() { return distance; }
 -    // Purpur end
 +    // Pearl start
-+    private static final String DOWNLOAD_PAGE = "https://github.com/minhh2792/Pearl/releases";
++    private static final String DOWNLOAD_PAGE = "https://github.com/Pearl-Project/Pearl/releases";
 +    // Pearl end
      private static @Nullable String mcVer;
  
@@ -29,7 +29,7 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..cbd4518669b9b879a4e1fc8c17113a97
 -        String[] parts = serverVersion.substring("git-Purpur-".length()).split("[-\\s]"); // Purpur
 -        final Component updateMessage = getUpdateStatusMessage("PurpurMC/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Purpur
 +        String[] parts = serverVersion.substring("git-Pearl-".length()).split("[-\\s]"); // Pearl
-+        final Component updateMessage = getUpdateStatusMessage("minhh2792/Pearl", "master", parts[0]); // Pearl
++        final Component updateMessage = getUpdateStatusMessage("Pearl-Project/Pearl", "master", parts[0]); // Pearl
          final Component history = getHistory();
  
          return history != null ? Component.join(net.kyori.adventure.text.JoinConfiguration.separator(Component.newline()), history, updateMessage) : updateMessage; // Purpur
