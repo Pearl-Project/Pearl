@@ -43,7 +43,6 @@ Pearl has patches from the following fork:
 * [Patina](https://github.com/PatinaMC/Patina)
 * [Akarin](https://github.com/Akarin-project/Akarin)
 * [EMC](https://github.com/starlis/empirecraft)
-* [Slice](https://github.com/Cryptite/Slice)
 
 Upstream: [Purpur](https://github.com/PurpurMC/Purpur)
 
