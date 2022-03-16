@@ -21,7 +21,7 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Reduction in unnecessary packets
 * ....and could be many more :)
 
-> Remember to taking backup frequently 
+> Remember to take backup frequently 
 
 ## Download
 
