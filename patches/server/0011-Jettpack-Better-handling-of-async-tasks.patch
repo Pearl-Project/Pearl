@@ -3,6 +3,9 @@ From: Simon Gardling <titaniumtown@gmail.com>
 Date: Thu, 8 Jul 2021 17:00:21 -0400
 Subject: [PATCH] Jettpack: Better handling of async tasks
 
+Original code by Titaniumtown, licensed under GNU General Public License v3.0
+You can find the original code on https://gitlab.com/Titaniumtown/JettPack
+
 Replaces niche/one time use threadpools in other areas by instead using `asyncExecutor` in `MCUtil` This patch also adds a system of flushing small async tasks (hence the variable name of `smallAsyncTasks`) in the `asyncExecutor` threadpool.
 
 diff --git a/src/main/java/net/minecraft/server/MCUtil.java b/src/main/java/net/minecraft/server/MCUtil.java
