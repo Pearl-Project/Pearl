@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Jake Potrebic <15055071+Machine-Maker@users.noreply.github.com>
 Date: Fri, 10 Dec 2021 08:15:36 -0500
-Subject: [PATCH] (PaperPR) Use DataConverter for itemstack/entity
+Subject: [PATCH] PaperPR: Use DataConverter for itemstack/entity
  deserialization
 
 Original PR: https://github.com/PaperMC/Paper/pull/7068

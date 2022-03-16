@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Simon Gardling <titaniumtown@gmail.com>
 Date: Thu, 8 Jul 2021 17:00:21 -0400
-Subject: [PATCH] Better handling of async tasks
+Subject: [PATCH] Jettpack: Better handling of async tasks
 
 Replaces niche/one time use threadpools in other areas by instead using `asyncExecutor` in `MCUtil` This patch also adds a system of flushing small async tasks (hence the variable name of `smallAsyncTasks`) in the `asyncExecutor` threadpool.
 
