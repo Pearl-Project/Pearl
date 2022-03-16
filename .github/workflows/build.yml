@@ -15,24 +15,28 @@ jobs:
       - name: Configure Git
         run: git config --global user.email "no-reply@github.com" && git config --global user.name "Github Actions"
       - name: Apply Patches
-        run: |
-          chmod +x ./gradlew
-          ./gradlew -Dorg.gradle.jvmargs="-Dfile.encoding=UTF-8 -Djdk.nio.maxCachedBufferSize=262144 -Dgraal.CompilerConfiguration=community -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true -Dgraal.SpeculativeGuardMovement=true -Dgraal.WriteableCodeCache=true --add-modules jdk.incubator.vector" applyPatches --stacktrace --no-daemon
+        run: ./gradlew -Dorg.gradle.jvmargs="-Dfile.encoding=UTF-8 -Djdk.nio.maxCachedBufferSize=262144 -Dgraal.CompilerConfiguration=community -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true -Dgraal.SpeculativeGuardMovement=true -Dgraal.WriteableCodeCache=true --add-modules jdk.incubator.vector" applyPatches --stacktrace --no-daemon
       - name: Build
+        run: ./gradlew -Dorg.gradle.jvmargs="-Dfile.encoding=UTF-8 -Djdk.nio.maxCachedBufferSize=262144 -Dgraal.CompilerConfiguration=community -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true -Dgraal.SpeculativeGuardMovement=true -Dgraal.WriteableCodeCache=true --add-modules jdk.incubator.vector" createReobfPaperclipJar --stacktrace --no-daemon
+      - name: Get Version
         run: |
-          ./gradlew -Dorg.gradle.jvmargs="-Dfile.encoding=UTF-8 -Djdk.nio.maxCachedBufferSize=262144 -Dgraal.CompilerConfiguration=community -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true -Dgraal.SpeculativeGuardMovement=true -Dgraal.WriteableCodeCache=true --add-modules jdk.incubator.vector" createReobfPaperclipJar --stacktrace --no-daemon
-          cd build/libs 
-          mv pearl-paperclip-1.18.2-R0.1-SNAPSHOT-reobf.jar Pearl-1.18.2-R0.1-SNAPSHOT.jar
+          echo "::set-output name=version::$(grep version gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
+          echo "::set-output name=mcversion::$(grep mcVersion gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
+        id: version
+      - name: Release jar
+        run: |
+          mkdir -p target
+          cp build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Archive Paperclip
         uses: actions/upload-artifact@v2
         with:
-          name: Pearl-1.18.2
-          path: build/libs/Pearl-1.18.2-R0.1-SNAPSHOT.jar
+          name: "Pearl-${{ steps.version.outputs.mcversion }}"
+          path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "1.18.2"
+          automatic_release_tag: "${{ steps.version.outputs.mcversion }}"
           prerelease: false
-          title: "Pearl 1.18.2"
-          files: ./build/libs/Pearl-1.18.2-R0.1-SNAPSHOT.jar
+          title: "Pearl ${{ steps.version.outputs.mcversion }}"
+          files: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
