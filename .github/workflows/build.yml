@@ -23,15 +23,15 @@ jobs:
           echo "::set-output name=version::$(grep version gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
           echo "::set-output name=mcversion::$(grep mcVersion gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
         id: version
-      - name: Release jar
+      - name: Setup release jar
         run: |
           mkdir -p target
-          cp build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-${{ steps.version.outputs.mcversion }}.jar
+          cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Archive Paperclip
         uses: actions/upload-artifact@v2
         with:
           name: "Pearl-${{ steps.version.outputs.mcversion }}"
-          path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+          path: ./target/pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -39,4 +39,4 @@ jobs:
           automatic_release_tag: "${{ steps.version.outputs.mcversion }}"
           prerelease: false
           title: "Pearl ${{ steps.version.outputs.mcversion }}"
-          files: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+          files: ./target/pearl-${{ steps.version.outputs.mcversion }}.jar
