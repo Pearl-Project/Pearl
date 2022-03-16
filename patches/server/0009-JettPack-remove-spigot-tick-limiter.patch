@@ -1,8 +1,10 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Simon Gardling <titaniumtown@gmail.com>
 Date: Mon, 6 Dec 2021 10:34:33 -0500
-Subject: [PATCH] remove spigot tick limiter
+Subject: [PATCH] JettPack: remove spigot tick limiter
 
+Original code by Titaniumtown, licensed under GNU General Public License v3.0
+You can find the original code on https://gitlab.com/Titaniumtown/JettPack
 
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
 index c29fdc40b72da7ca18a1c0bbcf02162799458063..acb3a6350cd83d8693d15511a0370e9bb04a08eb 100644

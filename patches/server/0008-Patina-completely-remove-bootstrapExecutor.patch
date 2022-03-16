@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: foss-mc <69294560+foss-mc@users.noreply.github.com>
 Date: Thu, 1 Jul 2021 12:26:15 +0000
-Subject: [PATCH] (Patina) completely remove bootstrapExecutor
+Subject: [PATCH] Patina: completely remove bootstrapExecutor
 
 
 diff --git a/src/main/java/net/minecraft/Util.java b/src/main/java/net/minecraft/Util.java

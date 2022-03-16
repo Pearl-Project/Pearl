@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Simon Gardling <titaniumtown@gmail.com>
 Date: Fri, 7 May 2021 10:52:18 -0400
-Subject: [PATCH] (Akarin) Swap the predicate order of collision
+Subject: [PATCH] Akarin: Swap the predicate order of collision
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
