@@ -5,7 +5,7 @@ Subject: [PATCH] EMC: Only process chat/commands when player has joined
 
 
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index bf635517f03d16003f951e80f19253ce99d4097d..f2e3c5d319b12d095694de67f82e6c6b99c50692 100644
+index f97e544e80daa2669c13a3573b819c20a15842b3..b7120c987c857b4aa8d398611aad7f6763df466b 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 @@ -2188,7 +2188,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
