@@ -1,0 +1,98 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: JustMangoT <38831897+JustMangoT@users.noreply.github.com>
+Date: Thu, 17 Mar 2022 13:22:12 +0700
+Subject: [PATCH] Detect bad plugins
+
+
+diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+index b7e032bbb55cabe4cb020a49135b495411614222..77d2e3c54ff32f575e2bfdb7ca53c731e4fcc60b 100644
+--- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
++++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+@@ -8,18 +8,7 @@ import com.google.common.graph.MutableGraph;
+ import java.io.File;
+ import java.lang.reflect.Constructor;
+ import java.lang.reflect.Method;
+-import java.util.ArrayList;
+-import java.util.Collection;
+-import java.util.HashMap;
+-import java.util.HashSet;
+-import java.util.Iterator;
+-import java.util.LinkedHashMap;
+-import java.util.LinkedHashSet;
+-import java.util.LinkedList;
+-import java.util.List;
+-import java.util.Map;
+-import java.util.Set;
+-import java.util.WeakHashMap;
++import java.util.*;
+ import java.util.logging.Level;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+@@ -43,6 +32,13 @@ import org.bukkit.permissions.PermissionDefault;
+ import org.bukkit.util.FileUtil;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
++// Pearl start
++import java.net.URL;
++import java.net.HttpURLConnection;
++import java.io.IOException;
++import java.io.BufferedReader;
++import java.io.InputStreamReader;
++// Pearl end
+ 
+ /**
+  * Handles all plugin management from the Server
+@@ -137,6 +133,41 @@ public final class SimplePluginManager implements PluginManager {
+         Map<String, Collection<String>> dependencies = new HashMap<String, Collection<String>>();
+         Map<String, Collection<String>> softDependencies = new HashMap<String, Collection<String>>();
+ 
++        // Pearl start
++        Set<String> badPlugins = new HashSet<>();
++        try {
++            HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/Pearl-Project/bad-plugins-list/main/list.json").openConnection();
++            connection.setRequestMethod("GET");
++            connection.setRequestProperty("Content-Type", "application/json");
++            connection.setRequestProperty("User-Agent", "Pearl-Downloader");
++            connection.setRequestProperty("Accept", "application/octet-stream");
++            connection.setInstanceFollowRedirects(true);
++
++            connection.connect();
++
++            int status = connection.getResponseCode();
++
++            if (status == HttpURLConnection.HTTP_OK) {
++                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
++                String inputLine;
++                StringBuilder response = new StringBuilder();
++
++                while ((inputLine = in.readLine()) != null) {
++                    response.append(inputLine);
++                }
++                in.close();
++
++                com.google.gson.JsonElement element = com.google.gson.JsonParser.parseString(response.toString());
++                com.google.gson.JsonArray array = element.getAsJsonObject().get("bad-plugins-list").getAsJsonArray();
++                for (int i = 0; i < array.size(); i++) {
++                    badPlugins.add(array.get(i).getAsString().toLowerCase());
++                }
++            } else throw new IOException("Bad response code: " + status);
++        } catch (IOException e) {
++            server.getLogger().log(Level.SEVERE, "Could not connect to github to fetch bad plugin list", e);
++        }
++        // Pearl end
++
+         // This is where it figures out all possible plugins
+         // Paper start - extra jars
+         final List<File> pluginJars = new ArrayList<>(java.util.Arrays.asList(directory.listFiles()));
+@@ -165,6 +196,11 @@ public final class SimplePluginManager implements PluginManager {
+                     server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "': uses the space-character (0x20) in its name"); // Paper
+                     continue;
+                 }
++                // Pearl start
++                else if (badPlugins.contains(description.rawName.toLowerCase())) {
++                    server.getLogger().log(Level.WARNING, "Detected bad plugin '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'");
++                }
++                // Pearl end
+             } catch (InvalidDescriptionException ex) {
+                 server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'", ex); // Paper
+                 continue;
