@@ -155,6 +155,19 @@ index d1526ed7197b883e1d1f07baf285bf5eef4d20d5..35d946c2f24d147a98f94574c7d6893a
                  // We don't need to parse pending
                  // (async tasks must live with race-conditions if they attempt to cancel between these few lines of code)
              }
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+index 99597258e8e88cd9e2c901c4ac3ff7faeeabee2b..fc9877036bc3619b5a5754dd149b0097f7d067af 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+@@ -11,7 +11,7 @@ public final class Versioning {
+     public static String getBukkitVersion() {
+         String result = "Unknown-Version";
+ 
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.purpur/purpur-api/pom.properties"); // Pufferfish // Purpur
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/me.minhh2792.pearl/pearl-api/pom.properties"); // Pufferfish // Purpur // Pearl
+         Properties properties = new Properties();
+ 
+         if (stream != null) {
 diff --git a/src/main/java/org/purpurmc/purpur/PurpurConfig.java b/src/main/java/org/purpurmc/purpur/PurpurConfig.java
 index 659e93fb24124318367e5b4d0b144ca1443950e9..d0c4be748b5d667f41d626082cc878c879adc951 100644
 --- a/src/main/java/org/purpurmc/purpur/PurpurConfig.java
