@@ -18,7 +18,6 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Optimize despawn
 * Alternate Current redstone
 * Improved hopper performance
-* Reduction in unnecessary packets
 * ....and could be many more :)
 
 > Remember to take backup frequently 
