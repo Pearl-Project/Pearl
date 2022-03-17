@@ -5,7 +5,7 @@ Subject: [PATCH] Detect bad plugins
 
 
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index b7e032bbb55cabe4cb020a49135b495411614222..047e7efe86da17a7710c8df874eeddcf133f5ec0 100644
+index b7e032bbb55cabe4cb020a49135b495411614222..642d308070533a550506f99536993166b808578d 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 @@ -43,6 +43,13 @@ import org.bukkit.permissions.PermissionDefault;
@@ -64,13 +64,14 @@ index b7e032bbb55cabe4cb020a49135b495411614222..047e7efe86da17a7710c8df874eeddcf
          // This is where it figures out all possible plugins
          // Paper start - extra jars
          final List<File> pluginJars = new ArrayList<>(java.util.Arrays.asList(directory.listFiles()));
-@@ -165,6 +207,11 @@ public final class SimplePluginManager implements PluginManager {
+@@ -165,6 +207,12 @@ public final class SimplePluginManager implements PluginManager {
                      server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "': uses the space-character (0x20) in its name"); // Paper
                      continue;
                  }
 +                // Pearl start
 +                else if (badPlugins.contains(description.rawName.toLowerCase())) {
-+                    server.getLogger().log(Level.WARNING, "Detected bad plugin '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'");
++                    server.getLogger().log(Level.WARNING, "[Pearl] Detected bad plugin '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'");
++                    server.getLogger().log(Level.WARNING, "[Pearl] You may consider remove it in order to maintain stability and performance");
 +                }
 +                // Pearl end
              } catch (InvalidDescriptionException ex) {
