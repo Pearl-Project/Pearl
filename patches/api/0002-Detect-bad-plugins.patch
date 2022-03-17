@@ -5,7 +5,7 @@ Subject: [PATCH] Detect bad plugins
 
 
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index b7e032bbb55cabe4cb020a49135b495411614222..642d308070533a550506f99536993166b808578d 100644
+index b7e032bbb55cabe4cb020a49135b495411614222..df5cdaada73a98ffc52b6f0402067178e364bc69 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 @@ -43,6 +43,13 @@ import org.bukkit.permissions.PermissionDefault;
@@ -22,12 +22,13 @@ index b7e032bbb55cabe4cb020a49135b495411614222..642d308070533a550506f99536993166
  
  /**
   * Handles all plugin management from the Server
-@@ -137,6 +144,41 @@ public final class SimplePluginManager implements PluginManager {
+@@ -137,6 +144,42 @@ public final class SimplePluginManager implements PluginManager {
          Map<String, Collection<String>> dependencies = new HashMap<String, Collection<String>>();
          Map<String, Collection<String>> softDependencies = new HashMap<String, Collection<String>>();
  
 +        // Pearl start
 +        Set<String> badPlugins = new HashSet<>();
++        boolean hasBadPluginsInstalled = false;
 +        try {
 +            HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/Pearl-Project/bad-plugins-list/main/list.json").openConnection();
 +            connection.setRequestMethod("GET");
@@ -64,16 +65,29 @@ index b7e032bbb55cabe4cb020a49135b495411614222..642d308070533a550506f99536993166
          // This is where it figures out all possible plugins
          // Paper start - extra jars
          final List<File> pluginJars = new ArrayList<>(java.util.Arrays.asList(directory.listFiles()));
-@@ -165,6 +207,12 @@ public final class SimplePluginManager implements PluginManager {
+@@ -165,6 +208,12 @@ public final class SimplePluginManager implements PluginManager {
                      server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "': uses the space-character (0x20) in its name"); // Paper
                      continue;
                  }
 +                // Pearl start
 +                else if (badPlugins.contains(description.rawName.toLowerCase())) {
++                    hasBadPluginsInstalled = true;
 +                    server.getLogger().log(Level.WARNING, "[Pearl] Detected bad plugin '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'");
-+                    server.getLogger().log(Level.WARNING, "[Pearl] You may consider remove it in order to maintain stability and performance");
 +                }
 +                // Pearl end
              } catch (InvalidDescriptionException ex) {
                  server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'", ex); // Paper
                  continue;
+@@ -253,6 +302,12 @@ public final class SimplePluginManager implements PluginManager {
+             }
+         }
+ 
++        // Pearl start
++        if (hasBadPluginsInstalled) {
++            server.getLogger().log(Level.WARNING, "[Pearl] You may consider remove it in order to maintain stability and performance");
++        }
++        // Pearl end
++
+         while (!plugins.isEmpty()) {
+             boolean missingDependency = true;
+             Iterator<Map.Entry<String, File>> pluginIterator = plugins.entrySet().iterator();
