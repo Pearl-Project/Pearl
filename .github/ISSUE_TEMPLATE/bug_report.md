@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Server information (please complete the following information):**
  - OS: 
- - Pearl version: 
+ - Pearl git version: 
  - Plugins: 
 
 **Additional context**
