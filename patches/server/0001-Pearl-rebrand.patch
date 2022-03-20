@@ -27,7 +27,7 @@ index e8bbf2519a75a94002b20c31a709a41eec4716aa..fe0223e68aa2ad0ec0db0130482e33ee
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
 diff --git a/src/main/java/com/destroystokyo/paper/Metrics.java b/src/main/java/com/destroystokyo/paper/Metrics.java
-index ed13b7b3f9d2a0b644d17d1019d42cbc4bbe72f7..264990c1b65e7918714cab364082ac9e50973786 100644
+index ed13b7b3f9d2a0b644d17d1019d42cbc4bbe72f7..2989ea84c9b377c5886b81734f29df9602a24103 100644
 --- a/src/main/java/com/destroystokyo/paper/Metrics.java
 +++ b/src/main/java/com/destroystokyo/paper/Metrics.java
 @@ -593,7 +593,7 @@ public class Metrics {
@@ -45,7 +45,7 @@ index ed13b7b3f9d2a0b644d17d1019d42cbc4bbe72f7..264990c1b65e7918714cab364082ac9e
                  metrics.addCustomChart(new Metrics.SingleLineChart("players", () -> Bukkit.getOnlinePlayers().size()));
 -                metrics.addCustomChart(new Metrics.SimplePie("online_mode", () -> Bukkit.getOnlineMode() ? "online" : (PaperConfig.isProxyOnlineMode() ? "bungee" : "offline"))); // Purpur
 -                metrics.addCustomChart(new Metrics.SimplePie("purpur_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur
-+                metrics.addCustomChart(new Metrics.SimplePie("online_mode", () -> Bukkit.getOnlineMode() ? "online" : (PaperConfig.isProxyOnlineMode() ? "bungee" : "offline"))); // Pearl
++                metrics.addCustomChart(new Metrics.SimplePie("online_mode", () -> Bukkit.getOnlineMode() ? "online" : "offline")); // Pearl
 +                metrics.addCustomChart(new Metrics.SimplePie("pearl_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur
  
                  metrics.addCustomChart(new Metrics.DrilldownPie("java_version", () -> {
@@ -117,7 +117,7 @@ index 5e9fc979daced5dad9977ab12ea019f4e6216bfb..4742d94450674a83c31b3e60e10155ac
  
      private static final int DEFAULT_SIZE_THRESHOLD = 1024 * 8;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index a3e01874786613874708f1cbe95893fc7834ab45..b1be7fe428ff9847abb604054140cdf6539cdaab 100644
+index 74630b99102bbb082ce48b8e76be29fc944cf9d8..73079f5b792fc07c69c2c6a6b1b615b2075b7ae7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -248,7 +248,7 @@ import javax.annotation.Nullable; // Paper
