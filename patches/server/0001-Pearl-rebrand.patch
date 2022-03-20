@@ -5,7 +5,7 @@ Subject: [PATCH] Pearl rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index e8bbf2519a75a94002b20c31a709a41eec4716aa..fe0223e68aa2ad0ec0db0130482e33ee09bf755d 100644
+index e8bbf2519a75a94002b20c31a709a41eec4716aa..be1c935e292aaa9135898297c9fa3a457bce8395 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -18,7 +18,7 @@ repositories {
@@ -17,6 +17,15 @@ index e8bbf2519a75a94002b20c31a709a41eec4716aa..fe0223e68aa2ad0ec0db0130482e33ee
      // Pufferfish start
      implementation("io.papermc.paper:paper-mojangapi:1.18.2-R0.1-SNAPSHOT") {
          exclude("io.papermc.paper", "paper-api")
+@@ -59,7 +59,7 @@ dependencies {
+ 
+     // Pufferfish start
+     implementation("org.yaml:snakeyaml:1.28")
+-    implementation ("me.carleslc.Simple-YAML:Simple-Yaml:ed30ff3e6b") {
++    implementation ("me.carleslc.Simple-YAML:Simple-Yaml:1.7.3") {
+         exclude(group="org.yaml", module="snakeyaml")
+     }
+     // Pufferfish end
 @@ -89,7 +89,7 @@ tasks.jar {
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
