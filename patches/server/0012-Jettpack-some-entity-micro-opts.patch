@@ -7,7 +7,7 @@ Original code by Titaniumtown, licensed under GNU General Public License v3.0
 You can find the original code on https://gitlab.com/Titaniumtown/JettPack
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 02095bbc81e9776db56ae766db04ee6b5d420657..378989b19eea507075ab192b048dbcc434bac9ec 100644
+index d123cb42b6f637c49e71cbf18a9fb9fffb21854c..f2aca71ca3f932d5d7ead076601384eca9202332 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -1765,10 +1765,16 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, i

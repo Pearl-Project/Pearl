@@ -218,7 +218,7 @@ index 1e0d261439255091a6f61485c0747231fbd5b1db..490f5d86df7fff6537c7080361a7df80
          OptionSpec<Integer> optionspec11 = optionparser.accepts("port").withRequiredArg().ofType(Integer.class).defaultsTo(-1, new Integer[0]);
          OptionSpec<String> optionspec12 = optionparser.accepts("serverId").withRequiredArg();
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 1674861bbddf58dd9a48ea57d070005888ac4b04..23bff2e531e6cb7aeb4658e9038f2011a8869b64 100644
+index 522764c03ecc1bd0ba8960276ca58e03fdc6f74f..7208789225d3cd7640129490e85a676e9ed0a924 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1438,8 +1438,8 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
