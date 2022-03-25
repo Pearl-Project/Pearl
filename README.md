@@ -5,7 +5,7 @@
 
 [![Build status](https://img.shields.io/github/workflow/status/Pearl-Project/Pearl/Build?logo=github&style=for-the-badge)](https://github.com/Pearl-Project/Pearl/actions)
 [![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.18.2&color=green&logo=java&style=for-the-badge)](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-18-2)
-[![Discord](https://img.shields.io/badge/Chat%20with%20us-Discord?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
+[![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
   
 Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers optimization and stability
   
@@ -13,18 +13,30 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 
 ## Features
 
+* All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) and [Purpur](https://github.com/PurpurMC/Purpur) features
 * Better handling of async tasks
 * DataConverter for itemstack entity
 * Optimize despawn
 * Alternate Current redstone
 * Improved hopper performance
-* ....and could be many more :)
 
 > Remember to take backup frequently 
 
 ## Download
 
-You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases)
+You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases), you will get a Paperclip jar file. Once you downloaded it, just run it like normal way.
+
+Pearl is recommended to use with Aikar Flags, you can use [this website](https://blog.airplane.gg/aikar-flags/) to generate it for your server
+
+After startup, a new file called `purpur.yml` will be created, this is the configuration file for Purpur. You can take a look here for more details [Purpur Documentation](https://purpurmc.org/docs/)
+
+## Notes
+
+In order to change redstone algorithm, go to `paper.yml` and find `redstone-algo`. You can set it to one of these value
+
+* `vanilla:` Vanilla default algorithm
+* `eigencraft:` Eigencraft algorithm
+* `alternate-current:` [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) algorithm (recommended)
 
 ## Compile
 
@@ -32,7 +44,7 @@ You can download the latest build of Pearl at [Release](https://github.com/Pearl
 * `./gradlew applyPatches` to apply all the patches
 * `./gradlew createReobfPaperclipJar` to get the PaperclipJar
 
-See [Purpur CONTRIBUTING.md](https://github.com/PurpurMC/Purpur/blob/ver/1.18.2/CONTRIBUTING.md) for more detailed information about patch system.
+See [Purpur CONTRIBUTING.md](https://github.com/PurpurMC/Purpur/blob/ver/1.18.2/CONTRIBUTING.md)
 
 ## Credit
 
