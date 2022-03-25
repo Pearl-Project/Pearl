@@ -46,7 +46,7 @@ out/
 # other stuff
 run/
 
-pearl-server
-pearl-api
+Pearl-Server
+Pearl-API
 
 !gradle/wrapper/gradle-wrapper.jar
