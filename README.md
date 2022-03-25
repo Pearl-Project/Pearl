@@ -38,13 +38,24 @@ In order to change redstone algorithm, go to `paper.yml` and find `redstone-algo
 * `eigencraft:` Eigencraft algorithm
 * `alternate-current:` [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) algorithm (recommended)
 
-## Compile
+## Building and setting up
+**Initial setup**
+```bash
+git clone https://github.com/Pearl-Project/Pearl.git
+./gradlew applyPatches
+```
 
-* Clone this repo
-* `./gradlew applyPatches` to apply all the patches
-* `./gradlew createReobfPaperclipJar` to get the PaperclipJar
+**Creating a patch**
 
 See [Purpur CONTRIBUTING.md](https://github.com/PurpurMC/Purpur/blob/ver/1.18.2/CONTRIBUTING.md)
+
+**Compiling and Building**
+
+Use the command `./gradlew build` to build the API and server. Compiled JARs
+will be placed under `Pearl-API/build/libs` and `Pearl-Server/build/libs`.
+
+To get a pearlclip jar, run `./gradlew createReobfPaperclipJar`.
+To install the `pearl-api` and `pearl` dependencies to your local Maven repo, run `./gradlew publishToMavenLocal`
 
 ## Credit
 
@@ -54,6 +65,7 @@ Pearl has patches from the following fork:
 * [Patina](https://github.com/PatinaMC/Patina)
 * [Akarin](https://github.com/Akarin-project/Akarin)
 * [EMC](https://github.com/starlis/empirecraft)
+* [Slice](https://github.com/Cryptite/Slice)
 
 Upstream: [Purpur](https://github.com/PurpurMC/Purpur)
 
