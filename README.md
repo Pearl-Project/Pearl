@@ -27,13 +27,13 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 
 You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases), you will get a Paperclip jar file. Once you downloaded it, just run it like normal way.
 
-Pearl is recommended to use with Aikar Flags, you can use [this website](https://blog.airplane.gg/aikar-flags/) to generate it for your server
+Pearl is recommended to use with Aikar Flags, you can use [this website](http://flags.sh/) to generate it for your server
 
 After startup, a new file called `purpur.yml` will be created, this is the configuration file for Purpur. You can take a look here for more details [Purpur Documentation](https://purpurmc.org/docs/)
 
-## Notes
+## Redstone algorithm
 
-In order to change redstone algorithm, go to `paper.yml` and find `redstone-algo`. You can set it to one of these value
+Go to `paper.yml` and find `redstone-algo`. You can set it to one of these value
 
 * `vanilla:` Vanilla default algorithm
 * `eigencraft:` Eigencraft algorithm

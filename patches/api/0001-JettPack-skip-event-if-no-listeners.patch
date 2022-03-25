@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Simon Gardling <titaniumtown@gmail.com>
 Date: Mon, 13 Dec 2021 11:28:08 -0500
-Subject: [PATCH] Jettpack: skip event if no listeners
+Subject: [PATCH] JettPack: skip event if no listeners
 
 Original code by Titaniumtown, licensed under GNU General Public License v3.0
 You can find the original code on https://gitlab.com/Titaniumtown/JettPack

@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Simon Gardling <titaniumtown@gmail.com>
 Date: Tue, 9 Nov 2021 16:53:39 -0500
-Subject: [PATCH] Jettpack: reduce allocs
+Subject: [PATCH] JettPack: reduce allocs
 
 Original code by Titaniumtown, licensed under GNU General Public License v3.0
 You can find the original code on https://gitlab.com/Titaniumtown/JettPack
