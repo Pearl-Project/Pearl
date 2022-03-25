@@ -1,3 +1,5 @@
+import io.papermc.paperweight.util.constants.*
+
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "7.1.2"
@@ -7,12 +9,14 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/") {
-        content { onlyForConfigurations("paperclip") }
+        content {
+            onlyForConfigurations(PAPERCLIP_CONFIG)
+        }
     }
 }
 
 dependencies {
-    remapper("net.fabricmc:tiny-remapper:0.7.0:fat")
+    remapper("net.fabricmc:tiny-remapper:0.8.1:fat")
     decompiler("net.minecraftforge:forgeflower:1.5.498.22")
     paperclip("io.papermc:paperclip:3.0.2")
 }
@@ -21,9 +25,11 @@ subprojects {
     apply(plugin = "java")
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_16
-        targetCompatibility = JavaVersion.VERSION_16
-        toolchain { languageVersion.set(JavaLanguageVersion.of(17)) }
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17)) 
+        }
     }
 
     tasks.withType<JavaCompile>().configureEach {
@@ -55,14 +61,13 @@ paperweight {
         ref.set(providers.gradleProperty("purpurCommit"))
 
         withStandardPatcher {
-            apiSourceDirPath.set("Purpur-API")
-            serverSourceDirPath.set("Purpur-Server")
+            baseName("Purpur")
 
             apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
             serverPatchDir.set(layout.projectDirectory.dir("patches/server"))
 
-            apiOutputDir.set(layout.projectDirectory.dir("pearl-api"))
-            serverOutputDir.set(layout.projectDirectory.dir("pearl-server"))
+            apiOutputDir.set(layout.projectDirectory.dir("Pearl-API"))
+            serverOutputDir.set(layout.projectDirectory.dir("Pearl-Server"))
         }
     }
 }
