@@ -5,7 +5,7 @@ Subject: [PATCH] Pearl version fetcher
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index fba5dbdb7bcbb55400ef18342c9b54612972a718..03c2c6ac2b7092192de0b471bb4fe36c4e286775 100644
+index fba5dbdb7bcbb55400ef18342c9b54612972a718..49a2c5e0770f597243dbe055549664f45272f324 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 @@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
@@ -24,7 +24,7 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..03c2c6ac2b7092192de0b471bb4fe36c
 -        String[] parts = serverVersion.substring("git-Purpur-".length()).split("[-\\s]"); // Purpur
 -        final Component updateMessage = getUpdateStatusMessage("PurpurMC/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Purpur
 +        String[] parts = serverVersion.substring("git-Pearl-".length()).split("[-\\s]"); // Pearl
-+        final Component updateMessage = getUpdateStatusMessage("Pearl-Project/Pearl", "master", parts[0]); // Pearl
++        final Component updateMessage = getUpdateStatusMessage("Pearl-Project/Pearl", "main", parts[0]); // Pearl
          final Component history = getHistory();
  
          return history != null ? Component.join(net.kyori.adventure.text.JoinConfiguration.separator(Component.newline()), history, updateMessage) : updateMessage; // Purpur
