@@ -1,10 +1,11 @@
 <div align="center">
 <img src="https://i.imgur.com/eTW6JQh.png" alt="Pearl">
   
+  
 ## Pearl Project
 
 [![Build status](https://img.shields.io/github/workflow/status/Pearl-Project/Pearl/Build?logo=github&style=for-the-badge)](https://github.com/Pearl-Project/Pearl/actions)
-[![Minecraft version](https://img.shields.io/static/v1?label=Minecraft&message=1.18.2&color=green&logo=java&style=for-the-badge)](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-18-2)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)
 [![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
   
 Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers optimization and stability
@@ -23,7 +24,7 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 
 > Remember to take backup frequently 
 
-## Download
+## Download 
 
 You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases), you will get a Paperclip jar file. Once you downloaded it, just run it like normal way.
 
