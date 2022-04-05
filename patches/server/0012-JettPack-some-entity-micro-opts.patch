@@ -7,10 +7,10 @@ Original code by Titaniumtown, licensed under GNU General Public License v3.0
 You can find the original code on https://gitlab.com/Titaniumtown/JettPack
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index d123cb42b6f637c49e71cbf18a9fb9fffb21854c..f2aca71ca3f932d5d7ead076601384eca9202332 100644
+index c32c3c426aed537c78492235521f96325283802a..c49a4887de6ed1df79adbebb527a5ded28a21077 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1765,10 +1765,16 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, i
+@@ -1765,10 +1765,16 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          }
      }
  
@@ -28,9 +28,9 @@ index d123cb42b6f637c49e71cbf18a9fb9fffb21854c..f2aca71ca3f932d5d7ead076601384ec
      public void absMoveTo(double x, double y, double z, float yaw, float pitch) {
          this.absMoveTo(x, y, z);
          this.setYRot(yaw % 360.0F);
-@@ -4235,6 +4241,12 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, i
-         return this.getZ((2.0D * this.random.nextDouble() - 1.0D) * widthScale);
+@@ -4237,6 +4243,12 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      }
+     // Paper end - block invalid positions
  
 +    // JettPack start
 +    public final int getPositionHashCode() {
@@ -41,7 +41,7 @@ index d123cb42b6f637c49e71cbf18a9fb9fffb21854c..f2aca71ca3f932d5d7ead076601384ec
      public final void setPosRaw(double x, double y, double z) {
          // Paper start
          this.setPosRaw(x, y, z, false);
-@@ -4500,15 +4512,31 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource, i
+@@ -4507,15 +4519,30 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          return true;
      }
  
@@ -61,18 +61,17 @@ index d123cb42b6f637c49e71cbf18a9fb9fffb21854c..f2aca71ca3f932d5d7ead076601384ec
 +                this.cached_position_hashcode = positionHashCode;
 +            }
 +
-+            float brightness = this.getBrightness(cached_eye_blockpos); // Pass BlockPos to getBrightness
-+
++            float f = this.getBrightness(cached_eye_blockpos); // Pass BlockPos to getBrightness
 +            // Check brightness first
-+            if (brightness <= 0.5F) return false;
-+            if (this.random.nextFloat() * 30.0F >= (brightness - 0.4F) * 2.0F) return false;
++            if (f <= 0.5F) return false;
++            if (this.random.nextFloat() * 30.0F >= (f - 0.4F) * 2.0F) return false;
 +
              boolean flag = this.isInWaterRainOrBubble() || this.isInPowderSnow || this.wasInPowderSnow;
 -            if (brightness > 0.5F && this.random.nextFloat() * 30.0F < (brightness - 0.4F) * 2.0F && !flag && this.level.canSeeSky(pos)) {
 +            if (!flag && this.level.canSeeSky(this.cached_eye_blockpos)) { // JettPack - move brightness checks up
                  return true;
              }
-+            // Jettpack end
++            // JettPack end
          }
          return false;
      }
