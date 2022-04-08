@@ -1994,7 +1994,7 @@ index 0000000000000000000000000000000000000000..6d6c1b81b696187add53e744aaffa54d
 +	}
 +}
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index ad3f0ff353a0448babde334641d1b1ac94779b07..15be778f249a959c327d84f43013dc476813c096 100644
+index ad3f0ff353a0448babde334641d1b1ac94779b07..d2880db2f0df4eb1d3f7bb5d1cfab2fcd26e541b 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -77,13 +77,37 @@ public class PaperWorldConfig {
@@ -2012,9 +2012,9 @@ index ad3f0ff353a0448babde334641d1b1ac94779b07..15be778f249a959c327d84f43013dc47
 +        VANILLA, EIGENCRAFT, ALTERNATE_CURRENT
 +    }
 +
-+    public RedstoneAlgo redstoneAlgo = RedstoneAlgo.EIGENCRAFT;
++    public RedstoneAlgo redstoneAlgo = RedstoneAlgo.VANILLA;
 +    private void redstoneAlgo() {
-+        String redstoneAlgoString = getString("redstone-algo", "eigencraft").toLowerCase().trim();
++        String redstoneAlgoString = getString("redstone-algo", "vanilla").toLowerCase().trim();
 +        if (PaperConfig.version < 25) {
 +            boolean oldUseEigenCraft = getBoolean("use-faster-eigencraft-redstone", false);
 +            if (!oldUseEigenCraft) {
