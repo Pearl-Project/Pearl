@@ -72,3 +72,5 @@ Pearl has patches from the following fork:
 Upstream: [Purpur](https://github.com/PurpurMC/Purpur)
 
 <a href="https://www.flaticon.com/free-icons/pearl" title="pearl icons">Pearl icons created by Freepik - Flaticon</a>
+
+[![bstats](https://bstats.org/signatures/server-implementation/pearl.svg)](https://bstats.org/plugin/server-implementation/Pearl/14650)
