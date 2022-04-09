@@ -22,8 +22,6 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Improved hopper performance
 * Packet obfuscation and reduction
 
-> Remember to take backup frequently 
-
 ## Download 
 
 You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases), you will get a Paperclip jar file. Once you downloaded it, just run it like normal way.
@@ -34,7 +32,9 @@ After startup, a new file called `purpur.yml` will be created, this is the confi
 
 ## Redstone algorithm
 
-Go to `paper.yml` and find `redstone-algo`. You can set it to one of these value
+> Notes: Redstone algorithm are just experimental feature, some redstone contraptions may appear to be broken. If you decided to switch between the algorithm, remember to take a backup of your server first!
+
+Go to `paper.yml` and find `redstone-implementation`. You can set it to one of these value
 
 * `vanilla:` Vanilla default algorithm
 * `eigencraft:` Eigencraft algorithm
