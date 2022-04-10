@@ -1,11 +1,9 @@
 name: Build
-on:
-  push: 
-    branch:
-      - 'main'
+on: [push, pull_request]
 
 jobs:
   build:
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.4.0
@@ -26,7 +24,7 @@ jobs:
           echo "::set-output name=version::$(grep version gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
           echo "::set-output name=mcversion::$(grep mcVersion gradle.properties | cut -d "=" -f2 | sed -e 's/^[[:space:]]*//')"
         id: version
-      - name: Setup release jar
+      - name: Setup release Jar
         run: |
           mkdir -p target
           cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
@@ -36,6 +34,7 @@ jobs:
           name: "Pearl-${{ steps.version.outputs.mcversion }}"
           path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Release
+        if: github.event_name != 'pull_request'
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
