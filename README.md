@@ -18,11 +18,9 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Better handling of async tasks
 * DataConverter for itemstack entity
 * Optimize despawn
-* Alternate Current redstone
+* [Alternate Current]((https://github.com/SpaceWalkerRS/alternate-current)) redstone implementation
 * Improved hopper performance
 * Packet obfuscation and reduction
-
-> Remember to take backup frequently 
 
 ## Download 
 
@@ -32,13 +30,15 @@ Pearl is recommended to use with Aikar Flags, you can use [this website](http://
 
 After startup, a new file called `purpur.yml` will be created, this is the configuration file for Purpur. You can take a look here for more details [Purpur Documentation](https://purpurmc.org/docs/)
 
-## Redstone algorithm
+## Redstone implementation
 
-Go to `paper.yml` and find `redstone-algo`. You can set it to one of these value
+> Notes: Redstone implementation are just experimental feature, some redstone contraptions may appear to be broken. If you decided to switch between the implementation, remember to take a backup of your server first!
 
-* `vanilla:` Vanilla default algorithm
-* `eigencraft:` Eigencraft algorithm
-* `alternate-current:` [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) algorithm (recommended)
+Go to `paper.yml` and find `redstone-implementation`. You can set it to one of these value
+
+* `vanilla:` Vanilla default implementation
+* `eigencraft:` Eigencraft implementation
+* `alternate-current:` [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) implementation (recommended)
 
 ## Building and setting up
 **Initial setup**
