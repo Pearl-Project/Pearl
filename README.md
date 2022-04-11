@@ -18,6 +18,7 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 * Better handling of async tasks
 * DataConverter for itemstack entity
 * Optimize despawn
+* Reduces memory consumption by implementing [Hydrogen](https://github.com/CaffeineMC/hydrogen-fabric)
 * [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) redstone implementation
 * Improved hopper performance
 * Packet obfuscation and reduction
