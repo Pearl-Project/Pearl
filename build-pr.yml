@@ -1,8 +1,5 @@
-name: Build
-on:
-  push: 
-    branches:
-      - 'main'
+name: Build PR
+on: pull_request
 
 jobs:
   build:
@@ -33,11 +30,4 @@ jobs:
         with:
           name: "Pearl-${{ steps.version.outputs.mcversion }}"
           path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
-      - name: Release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{ steps.version.outputs.mcversion }}"
-          prerelease: false
-          title: "Pearl ${{ steps.version.outputs.mcversion }}"
-          files: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+    
