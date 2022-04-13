@@ -14,22 +14,17 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 
 ## Features
 
-* All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) and [Purpur](https://github.com/PurpurMC/Purpur) features
-* Better handling of async tasks
-* DataConverter for itemstack entity
-* Optimize despawn
+* All [Purpur](https://github.com/PurpurMC/Purpur) features and its upstream
 * Reduces memory consumption by implementing [Hydrogen](https://github.com/CaffeineMC/hydrogen-fabric)
-* [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current) redstone implementation
+* Faster redstone logic by implementing [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current)
+* Packet obfuscation and reduction, which reduce as many unnecessary packet updates as possible
 * Improved hopper performance
-* Packet obfuscation and reduction
 
 ## Download 
 
 You can download the latest build of Pearl at [Release](https://github.com/Pearl-Project/Pearl/releases), you will get a Paperclip jar file. Once you downloaded it, just run it like normal way.
 
 Pearl is recommended to use with Aikar Flags, you can use [this website](http://flags.sh/) to generate it for your server
-
-After startup, a new file called `purpur.yml` will be created, this is the configuration file for Purpur. You can take a look here for more details [Purpur Documentation](https://purpurmc.org/docs/)
 
 ## Redstone implementation
 
