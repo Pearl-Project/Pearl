@@ -7,10 +7,10 @@ Original code by Titaniumtown, licensed under GNU General Public License v3.0
 You can find the original code on https://gitlab.com/Titaniumtown/JettPack
 
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 16d0e517afd3fae21f2666c6b4e1e38dcf5ea64b..b7e032bbb55cabe4cb020a49135b495411614222 100644
+index cbda2ba8cb80d4f24cf4b4cd74c1fea6669273df..5e4b444c36fbc27587e7d84f28fd284e95fbed5d 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-@@ -612,6 +612,14 @@ public final class SimplePluginManager implements PluginManager {
+@@ -646,6 +646,14 @@ public final class SimplePluginManager implements PluginManager {
       */
      @Override
      public void callEvent(@NotNull Event event) {
@@ -25,7 +25,7 @@ index 16d0e517afd3fae21f2666c6b4e1e38dcf5ea64b..b7e032bbb55cabe4cb020a49135b4954
          // Paper - replace callEvent by merging to below method
          if (event.isAsynchronous() && server.isPrimaryThread()) {
              throw new IllegalStateException(event.getEventName() + " may only be triggered asynchronously.");
-@@ -619,8 +627,8 @@ public final class SimplePluginManager implements PluginManager {
+@@ -653,8 +661,8 @@ public final class SimplePluginManager implements PluginManager {
              throw new IllegalStateException(event.getEventName() + " may only be triggered synchronously.");
          }
  
