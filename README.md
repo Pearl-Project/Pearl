@@ -15,7 +15,6 @@ Pearl is a fork of [PurpurMC](https://github.com/PurpurMC/Purpur) that offers op
 ## Features
 
 * All [Purpur](https://github.com/PurpurMC/Purpur) features and its upstream
-* Reduces memory consumption by implementing [Hydrogen](https://github.com/CaffeineMC/hydrogen-fabric)
 * Faster redstone logic by implementing [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current)
 * Packet obfuscation and reduction, which reduce as many unnecessary packet updates as possible
 * Improved hopper performance

@@ -5,7 +5,7 @@ Subject: [PATCH] Remove unnecessary warning
 
 
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 119989e11c2e11aceaddec507f15d0260fba648a..863ab5d121c8389b8c36aaae9fd2184923808933 100644
+index 20f016e24b679af2651dc84819b1c62d2937b77b..62c47d8b2c3834a821d74b749993432cd8597d15 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -326,6 +326,8 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
