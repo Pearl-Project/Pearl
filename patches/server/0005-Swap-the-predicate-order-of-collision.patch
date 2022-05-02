@@ -1,24 +1,27 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Simon Gardling <titaniumtown@gmail.com>
+From: =?UTF-8?q?=E3=84=97=E3=84=A0=CB=8B=20=E3=84=91=E3=84=A7=CB=8A?=
+ <tsao-chi@the-lingo.org>
 Date: Fri, 7 May 2021 10:52:18 -0400
-Subject: [PATCH] Akarin: Swap the predicate order of collision
+Subject: [PATCH] Swap the predicate order of collision
 
+Original code by Akarin-project, licensed under GNU General Public License v3.0
+You can find the original code on https://github.com/Akarin-project/Akarin
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index d58de23619321fadad3755f6110954ac462bbba1..c32c3c426aed537c78492235521f96325283802a 100644
+index 570a9f1a3387ac42a3c935519aa1656f9d016504..5c4eb430ee8ec433ceebbb8c1c8ef9aeb8b8febc 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1864,8 +1864,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1862,8 +1862,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      public void playerTouch(Player player) {}
  
      public void push(Entity entity) {
 -        if (!this.isPassengerOfSameVehicle(entity)) {
 -            if (!entity.noPhysics && !this.noPhysics) {
-+        if (!entity.noPhysics && !this.noPhysics && !this.isPassengerOfSameVehicle(entity)) { // Akarin - Swap the predicate order of collision
++        if (!entity.noPhysics && !this.noPhysics && !this.isPassengerOfSameVehicle(entity)) { // Pearl - Swap the predicate order of collision
                  if (this.level.paperConfig.onlyPlayersCollide && !(entity instanceof ServerPlayer || this instanceof ServerPlayer)) return; // Paper
                  double d0 = entity.getX() - this.getX();
                  double d1 = entity.getZ() - this.getZ();
-@@ -1894,7 +1893,6 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1892,7 +1891,6 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
                      }
                  }
  

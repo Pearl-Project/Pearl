@@ -1,14 +1,16 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2022 14:29:18 +0700
-Subject: [PATCH] EMC: dont load chunks for physics
+Subject: [PATCH] Dont load chunks for physics
 
+Original code by starlis
+You can find the original code on https://github.com/Akarin-project/Akarin
 
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index 719c3bf74581ba77015acea449f0e5798bbfc78c..a832e18b2604cce395a78b320691164e1b0afff8 100644
+index 1466ceb27f7b18a90afc05a1d60c7b4233528431..17d73371fa9fab5b5cf16ea4eaebdcb97aac235c 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
-@@ -905,7 +905,10 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+@@ -858,7 +858,10 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
  
      public void neighborChanged(BlockPos pos, Block sourceBlock, BlockPos neighborPos) {
          if (!this.isClientSide) {
@@ -21,7 +23,7 @@ index 719c3bf74581ba77015acea449f0e5798bbfc78c..a832e18b2604cce395a78b320691164e
              try {
                  // CraftBukkit start
 diff --git a/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java b/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
-index c8b85a89bc23139384dfada2e86edbadff9a3d61..31cca3aeb9693e2305056228cc5d71dfd8b69979 100644
+index 61590f2f04a797235299f1bd6b78a08f5bfe4a33..8f5a1cfc6dbdf17579150a05c50b9fa9c0287023 100644
 --- a/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
 +++ b/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
 @@ -967,7 +967,10 @@ public abstract class BlockBehaviour {
