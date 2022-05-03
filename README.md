@@ -14,7 +14,7 @@ A fork of Pufferfish with optimization, features and stability
 
 ## Download 
 
-Latest build of Pearl: [Download](https://github.com/Pearl-Project/Pearl/releases)
+Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
 
 ## License
 
