@@ -5,13 +5,15 @@ Subject: [PATCH] Pearl Configuration
 
 
 diff --git a/src/main/java/co/aikar/timings/TimingsExport.java b/src/main/java/co/aikar/timings/TimingsExport.java
-index a5e4467382422df6cff2b9f61f44feabfe7084f3..4b81d4be63113b2585719fc4e5df656aae5c2701 100644
+index a5e4467382422df6cff2b9f61f44feabfe7084f3..bd0edc740a863c13003bc3ac7b81276cceb9d387 100644
 --- a/src/main/java/co/aikar/timings/TimingsExport.java
 +++ b/src/main/java/co/aikar/timings/TimingsExport.java
-@@ -240,6 +240,7 @@ public class TimingsExport extends Thread {
+@@ -239,7 +239,8 @@ public class TimingsExport extends Thread {
+             pair("spigot", mapAsJSON(Bukkit.spigot().getSpigotConfig(), null)),
              pair("bukkit", mapAsJSON(Bukkit.spigot().getBukkitConfig(), null)),
              pair("paper", mapAsJSON(Bukkit.spigot().getPaperConfig(), null)), // Pufferfish
-             pair("pufferfish", mapAsJSON(gg.pufferfish.pufferfish.PufferfishConfig.getConfigCopy(), null)) // Pufferfish
+-            pair("pufferfish", mapAsJSON(gg.pufferfish.pufferfish.PufferfishConfig.getConfigCopy(), null)) // Pufferfish
++            pair("pufferfish", mapAsJSON(gg.pufferfish.pufferfish.PufferfishConfig.getConfigCopy(), null)), // Pufferfish
 +            pair("pearl", mapAsJSON(me.minhh2792.pearl.PearlConfig.getConfigCopy(), null)) // Pearl
          ));
  
