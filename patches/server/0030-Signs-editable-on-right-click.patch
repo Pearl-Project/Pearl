@@ -1,0 +1,52 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <blake.galbreath@gmail.com>
+Date: Fri, 24 May 2019 02:39:25 -0500
+Subject: [PATCH] Signs editable on right click
+
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index fc101a8b3400e788752351e762a5e188ca9dd84a..ad927c3402085888be607dea2ff820e2328106b1 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -151,4 +151,9 @@ public class PearlConfig {
+ 	private static void tpsCatchup() {
+ 		tpsCatchup = getBoolean("tps-catchup", tpsCatchup, "Enable TPS catchup");
+ 	}
++
++	public static boolean signRightClickEdit = false;
++	private static void signSettings() {
++		signRightClickEdit = getBoolean("sign.right-click-edit", signRightClickEdit, "Allow editing signs when right-click");
++	}
+ }
+diff --git a/src/main/java/net/minecraft/world/level/block/SignBlock.java b/src/main/java/net/minecraft/world/level/block/SignBlock.java
+index ed3d78494735ceda14ad0ea23adeadc374f3b35e..3b4582baaa7de77a505e838b37766b99c85e7b8c 100644
+--- a/src/main/java/net/minecraft/world/level/block/SignBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/SignBlock.java
+@@ -14,6 +14,7 @@ import net.minecraft.world.item.DyeItem;
+ import net.minecraft.world.item.Item;
+ import net.minecraft.world.item.ItemStack;
+ import net.minecraft.world.item.Items;
++import net.minecraft.world.item.SignItem;
+ import net.minecraft.world.level.BlockGetter;
+ import net.minecraft.world.level.Level;
+ import net.minecraft.world.level.LevelAccessor;
+@@ -108,6 +109,17 @@ public abstract class SignBlock extends BaseEntityBlock implements SimpleWaterlo
+                         }
+                     }
+ 
++                    // Purpur start - right click to open sign editor
++                    if (me.minhh2792.pearl.PearlConfig.signRightClickEdit && itemStack.getItem() instanceof SignItem &&
++                        !player.isCrouching() && player.getAbilities().mayBuild &&
++                        player.getBukkitEntity().hasPermission("purpur.sign.edit")) {
++                        signBlockEntity.setEditable(true);
++                        signBlockEntity.setAllowedPlayerEditor(player.getUUID());
++                        player.openTextEdit(signBlockEntity);
++                        return InteractionResult.SUCCESS;
++                    }
++                    // Purpur end
++
+                     return signBlockEntity.executeClickCommands((ServerPlayer)player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
+                 } else {
+                     return InteractionResult.PASS;
