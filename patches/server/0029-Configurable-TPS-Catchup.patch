@@ -1,0 +1,39 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <blake.galbreath@gmail.com>
+Date: Thu, 26 Mar 2020 19:06:22 -0500
+Subject: [PATCH] Configurable TPS Catchup
+
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index e2daab34931597d80c30892b3f6e64e192664215..fc101a8b3400e788752351e762a5e188ca9dd84a 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -146,4 +146,9 @@ public class PearlConfig {
+ 	private static void serverModName() {
+ 		serverModName = getString("info.server-mod-name", serverModName, "Server software name (Show in F3 and somewhere)");
+ 	}
++
++	public static boolean tpsCatchup = true;
++	private static void tpsCatchup() {
++		tpsCatchup = getBoolean("tps-catchup", tpsCatchup, "Enable TPS catchup");
++	}
+ }
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index e5c314235c8cf183bb3d3e873377994bf7a0439a..4a2c2160aa97d818dca0e366431429023d2a7460 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -1232,7 +1232,13 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+                     this.tickServer(this::haveTime);
+                     this.profiler.popPush("nextTickWait");
+                     this.mayHaveDelayedTasks = true;
+-                    this.delayedTasksMaxNextTickTime = Math.max(Util.getMillis() + 50L, this.nextTickTime);
++                    // Purpur start - tps catchup
++                    if (me.minhh2792.pearl.PearlConfig.tpsCatchup) {
++                        this.delayedTasksMaxNextTickTime = Math.max(Util.getMillis() + 50L, this.nextTickTime);
++                    } else {
++                        this.delayedTasksMaxNextTickTime = this.nextTickTime = curTime / 1000000L + 50L;
++                    }
++                    // Purpur end - tps catchup
+                     this.waitUntilNextTick();
+                     this.profiler.pop();
+                     this.endMetricsRecordingTick();
