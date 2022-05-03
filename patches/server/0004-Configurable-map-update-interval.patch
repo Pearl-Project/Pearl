@@ -1,11 +1,27 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Minh Nguyen <minhh2792.work@gmail.com>
 Date: Sat, 16 Apr 2022 01:44:32 +0000
-Subject: [PATCH] Faster map update interval
+Subject: [PATCH] Configurable map update interval
 
 
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index 15aeae6907f05bd091122d76d0e7f056c9afc02f..e2ffe61cfadea219f242a7ae41ec32d60a23e319 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -131,6 +131,11 @@ public class PearlConfig {
+ 		ensureDefault(key, defaultValue, comment);
+ 		return config.getStringList(key);
+ 	}
++
++	public static int mapUpdateInterval;
++	private static void mapUpdateInterval() {
++		mapUpdateInterval = getInt("map-update-interval", 5, "Ticks per map update");
++	}
+ 	
+ 
+ }
 diff --git a/src/main/java/net/minecraft/world/level/saveddata/maps/MapItemSavedData.java b/src/main/java/net/minecraft/world/level/saveddata/maps/MapItemSavedData.java
-index 6a78374b6ab3198571df7e17023d371667ebb24b..29259066bed5efc901c6ab445f566d937f85a292 100644
+index 6a78374b6ab3198571df7e17023d371667ebb24b..cce9039621dfff63eebb1a0f1aaa474f644d76e1 100644
 --- a/src/main/java/net/minecraft/world/level/saveddata/maps/MapItemSavedData.java
 +++ b/src/main/java/net/minecraft/world/level/saveddata/maps/MapItemSavedData.java
 @@ -624,7 +624,7 @@ public class MapItemSavedData extends SavedData {
@@ -13,7 +29,7 @@ index 6a78374b6ab3198571df7e17023d371667ebb24b..29259066bed5efc901c6ab445f566d93
          Packet<?> nextUpdatePacket(int mapId) {
              MapItemSavedData.MapPatch worldmap_b;
 -            if (!this.dirtyData && this.tick % 5 != 0) { this.tick++; return null; } // Paper - this won't end up sending, so don't render it!
-+            if (!this.dirtyData && this.tick % 1 != 0) { this.tick++; return null; } // Paper - this won't end up sending, so don't render it! // Pearl - faster map update interval
++            if (!this.dirtyData && this.tick % me.minhh2792.pearl.PearlConfig.mapUpdateInterval != 0) { this.tick++; return null; } // Paper - this won't end up sending, so don't render it! // Pearl - Configurable map update interval
              boolean vanillaMaps = shouldUseVanillaMap(); // Paper
              org.bukkit.craftbukkit.map.RenderData render = !vanillaMaps ? MapItemSavedData.this.mapView.render((org.bukkit.craftbukkit.entity.CraftPlayer) this.player.getBukkitEntity()) : MapItemSavedData.this.vanillaRender; // CraftBukkit // Paper
  
@@ -22,7 +38,7 @@ index 6a78374b6ab3198571df7e17023d371667ebb24b..29259066bed5efc901c6ab445f566d93
              Collection collection;
  
 -            if ((true || this.dirtyDecorations) && this.tick++ % 5 == 0) { // CraftBukkit - custom maps don't update this yet
-+            if ((true || this.dirtyDecorations) && this.tick++ % 1 == 0) { // CraftBukkit - custom maps don't update this yet // Pearl - faster map update interval
++            if ((true || this.dirtyDecorations) && this.tick++ % me.minhh2792.pearl.PearlConfig.mapUpdateInterval == 0) { // CraftBukkit - custom maps don't update this yet // Pearl - Configurable map update interval
                  this.dirtyDecorations = false;
                  // CraftBukkit start
                  java.util.Collection<MapDecoration> icons = new java.util.ArrayList<MapDecoration>();
