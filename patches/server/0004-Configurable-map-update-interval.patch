@@ -5,7 +5,7 @@ Subject: [PATCH] Configurable map update interval
 
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 15aeae6907f05bd091122d76d0e7f056c9afc02f..e2ffe61cfadea219f242a7ae41ec32d60a23e319 100644
+index 9b2838ee1616bc5776d2abc301899d47ed3c1474..e7f8d3ec14ca613cb4e114b7f50e149f42c3549c 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -131,6 +131,11 @@ public class PearlConfig {
@@ -13,9 +13,9 @@ index 15aeae6907f05bd091122d76d0e7f056c9afc02f..e2ffe61cfadea219f242a7ae41ec32d6
  		return config.getStringList(key);
  	}
 +
-+	public static int mapUpdateInterval;
++	public static int mapUpdateInterval = 5;
 +	private static void mapUpdateInterval() {
-+		mapUpdateInterval = getInt("map-update-interval", 5, "Ticks per map update");
++		mapUpdateInterval = getInt("map-update-interval", mapUpdateInterval, "Ticks per map update");
 +	}
  	
  

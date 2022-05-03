@@ -10,11 +10,13 @@ A fork of Pufferfish with optimization, features and stability
 * All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
 * Faster redstone logic by implementing [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current)
 * Packet obfuscation and reduction, which reduce as many unnecessary packet updates as possible
-* Improved hopper performance
-
+* Gameplay inconsistencies fix
+* Compatible with Spigot/Paper plugins
 ## Download 
 
 Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
+
+By using Pearl, you are agreed to the [Minecraft EULA](https://account.mojang.com/documents/minecraft_eula)
 
 ## License
 
