@@ -3,8 +3,7 @@ From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2022 14:49:54 +0700
 Subject: [PATCH] Improve Hopper Performance
 
-Original code by starlis
-You can find the original code on https://github.com/Akarin-project/Akarin
+Only do an item "suck in" action once per second
 
 diff --git a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
 index e5b8bcfe0d69cc0deecdf54662d553f16550fd2a..4922f6e7987d9be566d1ce28c650bda1536b2711 100644

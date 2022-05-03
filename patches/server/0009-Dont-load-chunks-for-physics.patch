@@ -3,8 +3,6 @@ From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2022 14:29:18 +0700
 Subject: [PATCH] Dont load chunks for physics
 
-Original code by starlis
-You can find the original code on https://github.com/Akarin-project/Akarin
 
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
 index 1466ceb27f7b18a90afc05a1d60c7b4233528431..17d73371fa9fab5b5cf16ea4eaebdcb97aac235c 100644

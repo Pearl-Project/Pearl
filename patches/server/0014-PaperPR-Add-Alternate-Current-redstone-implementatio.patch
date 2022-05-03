@@ -1824,6 +1824,21 @@ index 0000000000000000000000000000000000000000..6b5bffd288e2f815d8c3788e73530e69
 +        return LevelHelper.setWireState(level, pos, state, added);
 +    }
 +}
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index 9f0e4bfed860b7e1dbf73ff188013e235baa46e0..5578cc3eb2e3a7aadcda576e6f7c96c6bfecdd7e 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -71,8 +71,8 @@ public class PaperConfig {
+         commands.put("paper", new PaperCommand("paper"));
+         commands.put("mspt", new MSPTCommand("mspt"));
+ 
+-        version = getInt("config-version", 25);
+-        set("config-version", 25);
++        version = getInt("config-version", 26);
++        set("config-version", 26);
+         readConfig(PaperConfig.class, null);
+     }
+ 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 index ad3f0ff353a0448babde334641d1b1ac94779b07..55f3372959fd30e02ac3e233902749ae3e136920 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
