@@ -7,7 +7,7 @@ Subject: [PATCH] PaperPR: Use DataConverter for itemstack/entity
 Original PR: https://github.com/PaperMC/Paper/pull/7068
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-index 7e06f263cf618b82f77101ef86d819d5dc37a24e..cf87f0c74ca401d6afc4fc912b1f1488dde476fb 100644
+index 5a60f28fde279887f09fb18391afb4c4519a1161..01738c5c9222ec610353af9e062fc29080c4ddca 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 @@ -453,8 +453,8 @@ public final class CraftMagicNumbers implements UnsafeValues {
