@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Tue, 3 May 2022 17:17:10 +0000
+Subject: [PATCH] Server mod name
+
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index 851bf661c70d1040147c2bda15ee246d19b427ac..e2daab34931597d80c30892b3f6e64e192664215 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -141,4 +141,9 @@ public class PearlConfig {
+ 	private static void useAlternativeKeepalive() {
+ 		useAlternativeKeepalive = getBoolean("use-alternative-keepalive", useAlternativeKeepalive, "Use the alternative keepalive method");
+ 	}
++
++	public static String serverModName = "Pearl";
++	private static void serverModName() {
++		serverModName = getString("info.server-mod-name", serverModName, "Server software name (Show in F3 and somewhere)");
++	}
+ }
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 83e611754c21e26c4238b21d42b8952df1f288e1..e5c314235c8cf183bb3d3e873377994bf7a0439a 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -1700,7 +1700,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+ 
+     @DontObfuscate
+     public String getServerModName() {
+-        return "Pearl"; // Pearl - Pearl > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return me.minhh2792.pearl.PearlConfig.serverModName; // Pearl - Pearl > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public SystemReport fillSystemReport(SystemReport details) {
