@@ -19,10 +19,10 @@ index 85c9056f92711b985e251f0f06ed551d03deb562..c540694e24978e9e6119267d4f66df52
      public static final PlainComponentSerializer PLAIN_COMPONENT = PlainComponentSerializer.builder().flattener(FLATTENER).build();
      public static final PlainTextComponentSerializer PLAIN = PlainTextComponentSerializer.builder().flattener(FLATTENER).build();
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 4e4c35705233f6766ac4dd22a41246f6d334a44e..d1398627825e317c2be7350cfd76656f89f504e9 100644
+index ec17198a782285027b913299d03e3b72f8b6c522..ab7fb90e987c26fd469ab411899d0af4bd241426 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -154,7 +154,9 @@ public class PearlConfig {
+@@ -177,7 +177,9 @@ public class PearlConfig {
  	}
  
  	public static boolean signRightClickEdit = false;

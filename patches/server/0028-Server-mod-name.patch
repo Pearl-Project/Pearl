@@ -5,17 +5,17 @@ Subject: [PATCH] Server mod name
 
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 95f39be1429ffff6fd49a190a2d73ff075208750..169458baae9733c172f82f565a73b006b0b4d218 100644
+index cd480ada49fe3451c56e6c788388ddde705628a9..332b3c39b3ffdc4009d9be86403c6a48c48620cd 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -142,4 +142,9 @@ public class PearlConfig {
+@@ -165,4 +165,9 @@ public class PearlConfig {
  	private static void useAlternativeKeepalive() {
  		useAlternativeKeepalive = getBoolean("use-alternative-keepalive", useAlternativeKeepalive);
  	}
 +
 +	public static String serverModName = "Pearl";
 +	private static void serverModName() {
-+		serverModName = getString("info.server-mod-name", serverModName);
++		serverModName = getString("misc.server-mod-name", serverModName);
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java

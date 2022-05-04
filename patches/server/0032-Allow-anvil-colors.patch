@@ -7,10 +7,10 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index d1398627825e317c2be7350cfd76656f89f504e9..dd85d81e1d9ef1e9b974f222273e5784f41e05d1 100644
+index ab7fb90e987c26fd469ab411899d0af4bd241426..10e02477a3a4de8aa67329ba1dd37efcf389bb54 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -159,4 +159,9 @@ public class PearlConfig {
+@@ -182,4 +182,9 @@ public class PearlConfig {
  		signRightClickEdit = getBoolean("blocks.sign.right-click-edit", signRightClickEdit);
  		signAllowColors = getBoolean("blocks.sign.allow-colors", signAllowColors);
  	}

@@ -7,17 +7,17 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 169458baae9733c172f82f565a73b006b0b4d218..a3daae91a6230a9a293311840ae661bb251d4192 100644
+index 332b3c39b3ffdc4009d9be86403c6a48c48620cd..d80e6732b1c65dffc49fc4c81b5c076af896e414 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -147,4 +147,9 @@ public class PearlConfig {
+@@ -170,4 +170,9 @@ public class PearlConfig {
  	private static void serverModName() {
- 		serverModName = getString("info.server-mod-name", serverModName);
+ 		serverModName = getString("misc.server-mod-name", serverModName);
  	}
 +
 +	public static boolean tpsCatchup = true;
 +	private static void tpsCatchup() {
-+		tpsCatchup = getBoolean("tps-catchup", tpsCatchup);
++		tpsCatchup = getBoolean("misc.tps-catchup", tpsCatchup);
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java

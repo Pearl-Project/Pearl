@@ -7,12 +7,12 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index a3daae91a6230a9a293311840ae661bb251d4192..4e4c35705233f6766ac4dd22a41246f6d334a44e 100644
+index d80e6732b1c65dffc49fc4c81b5c076af896e414..ec17198a782285027b913299d03e3b72f8b6c522 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -152,4 +152,9 @@ public class PearlConfig {
+@@ -175,4 +175,9 @@ public class PearlConfig {
  	private static void tpsCatchup() {
- 		tpsCatchup = getBoolean("tps-catchup", tpsCatchup);
+ 		tpsCatchup = getBoolean("misc.tps-catchup", tpsCatchup);
  	}
 +
 +	public static boolean signRightClickEdit = false;

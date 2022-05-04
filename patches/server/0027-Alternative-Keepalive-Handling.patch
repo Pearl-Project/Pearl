@@ -7,10 +7,10 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index fe6bb1b735b5c0e551f74d2ab913b4b708f8487f..95f39be1429ffff6fd49a190a2d73ff075208750 100644
+index ca98bdd7df104bcb0e16438fe9f0ff98d3ae7631..cd480ada49fe3451c56e6c788388ddde705628a9 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -137,6 +137,9 @@ public class PearlConfig {
+@@ -160,6 +160,9 @@ public class PearlConfig {
  	private static void mapUpdateInterval() {
  		mapUpdateInterval = getInt("item.map.update-interval", mapUpdateInterval);
  	}

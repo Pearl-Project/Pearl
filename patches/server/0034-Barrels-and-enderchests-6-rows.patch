@@ -7,7 +7,7 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index dd85d81e1d9ef1e9b974f222273e5784f41e05d1..08c8161e7a9927be5f975a4a74c5fd2ab3a5bc19 100644
+index 10e02477a3a4de8aa67329ba1dd37efcf389bb54..13d5fe7411a709b33dde8ff9a8f6e7006f92708a 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -1,5 +1,6 @@
@@ -17,7 +17,7 @@ index dd85d81e1d9ef1e9b974f222273e5784f41e05d1..08c8161e7a9927be5f975a4a74c5fd2a
  import org.bukkit.configuration.ConfigurationSection;
  import org.bukkit.configuration.MemoryConfiguration;
  import net.minecraft.server.MinecraftServer;
-@@ -164,4 +165,26 @@ public class PearlConfig {
+@@ -187,4 +188,26 @@ public class PearlConfig {
  	private static void anvilAllowColors() {
  		anvilAllowColors = getBoolean("blocks.anvil.allow-colors", anvilAllowColors);
  	}
