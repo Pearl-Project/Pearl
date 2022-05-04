@@ -5,11 +5,11 @@ Subject: [PATCH] Configurable map update interval
 
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index fc75fdcfcddad84e66988288aef56e90e3f2457c..fe6bb1b735b5c0e551f74d2ab913b4b708f8487f 100644
+index 6aded0926e0f9e78d555c6c7a2e7d9e0ec056725..c69292ac77191e211c780457f8ba2afc2c9a1837 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -132,6 +132,11 @@ public class PearlConfig {
- 		ensureDefault(key, defaultValue, comment);
+ 		ensureDefault(key, defaultValue);
  		return config.getStringList(key);
  	}
 +

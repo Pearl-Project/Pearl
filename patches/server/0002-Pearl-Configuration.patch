@@ -20,7 +20,7 @@ index a5e4467382422df6cff2b9f61f44feabfe7084f3..bd0edc740a863c13003bc3ac7b81276c
          new TimingsExport(listeners, parent, history).start();
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..fc75fdcfcddad84e66988288aef56e90e3f2457c
+index 0000000000000000000000000000000000000000..6aded0926e0f9e78d555c6c7a2e7d9e0ec056725
 --- /dev/null
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -0,0 +1,137 @@
@@ -77,7 +77,7 @@ index 0000000000000000000000000000000000000000..fc75fdcfcddad84e66988288aef56e90
 +			}
 +		}
 +		
-+		getInt("info.version", 1, "Don't touch this");
++		getInt("info.version", 1);
 +		setComment("info",
 +				"Pearl Configuration",
 +				"More details on some option can be found at https://purpurmc.org/docs/",
@@ -114,48 +114,48 @@ index 0000000000000000000000000000000000000000..fc75fdcfcddad84e66988288aef56e90
 +		}
 +	}
 +	
-+	private static boolean getBoolean(String key, boolean defaultValue, String... comment) {
-+		return getBoolean(key, null, defaultValue, comment);
++	private static boolean getBoolean(String key, boolean defaultValue) {
++		return getBoolean(key, null, defaultValue);
 +	}
 +	
-+	private static boolean getBoolean(String key, @Nullable String oldKey, boolean defaultValue, String... comment) {
-+		ensureDefault(key, defaultValue, comment);
++	private static boolean getBoolean(String key, @Nullable String oldKey, boolean defaultValue) {
++		ensureDefault(key, defaultValue);
 +		return config.getBoolean(key, defaultValue);
 +	}
 +	
-+	private static int getInt(String key, int defaultValue, String... comment) {
-+		return getInt(key, null, defaultValue, comment);
++	private static int getInt(String key, int defaultValue) {
++		return getInt(key, null, defaultValue);
 +	}
 +	
-+	private static int getInt(String key, @Nullable String oldKey, int defaultValue, String... comment) {
-+		ensureDefault(key, defaultValue, comment);
++	private static int getInt(String key, @Nullable String oldKey, int defaultValue) {
++		ensureDefault(key, defaultValue);
 +		return config.getInt(key, defaultValue);
 +	}
 +	
-+	private static double getDouble(String key, double defaultValue, String... comment) {
-+		return getDouble(key, null, defaultValue, comment);
++	private static double getDouble(String key, double defaultValue) {
++		return getDouble(key, null, defaultValue);
 +	}
 +	
-+	private static double getDouble(String key, @Nullable String oldKey, double defaultValue, String... comment) {
-+		ensureDefault(key, defaultValue, comment);
++	private static double getDouble(String key, @Nullable String oldKey, double defaultValue) {
++		ensureDefault(key, defaultValue);
 +		return config.getDouble(key, defaultValue);
 +	}
 +	
-+	private static String getString(String key, String defaultValue, String... comment) {
-+		return getOldString(key, null, defaultValue, comment);
++	private static String getString(String key, String defaultValue) {
++		return getOldString(key, null, defaultValue);
 +	}
 +	
-+	private static String getOldString(String key, @Nullable String oldKey, String defaultValue, String... comment) {
-+		ensureDefault(key, defaultValue, comment);
++	private static String getOldString(String key, @Nullable String oldKey, String defaultValue) {
++		ensureDefault(key, defaultValue);
 +		return config.getString(key, defaultValue);
 +	}
 +	
-+	private static List<String> getStringList(String key, List<String> defaultValue, String... comment) {
-+		return getStringList(key, null, defaultValue, comment);
++	private static List<String> getStringList(String key, List<String> defaultValue) {
++		return getStringList(key, null, defaultValue);
 +	}
 +	
-+	private static List<String> getStringList(String key, @Nullable String oldKey, List<String> defaultValue, String... comment) {
-+		ensureDefault(key, defaultValue, comment);
++	private static List<String> getStringList(String key, @Nullable String oldKey, List<String> defaultValue) {
++		ensureDefault(key, defaultValue);
 +		return config.getStringList(key);
 +	}
 +	
