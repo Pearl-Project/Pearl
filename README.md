@@ -2,15 +2,16 @@
 A fork of Pufferfish with optimization, features and stability
 
 [![Build status](https://img.shields.io/github/workflow/status/Pearl-Project/Pearl/Build?logo=github&style=for-the-badge)](https://github.com/Pearl-Project/Pearl/actions)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)
+[![Release](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)](https://github.com/Pearl-Project/Pearl/releases)
 [![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
 
 ## Features
 
 * All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
 * Faster redstone logic by implementing [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current)
-* Packet obfuscation and reduction, which reduce as many unnecessary packet updates as possible
+* Packet obfuscation and reduction
 * Gameplay inconsistencies fix
+* Included some Purpur features
 * Compatible with Spigot/Paper plugins
 ## Download 
 
