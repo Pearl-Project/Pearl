@@ -7,7 +7,7 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index fc101a8b3400e788752351e762a5e188ca9dd84a..ad927c3402085888be607dea2ff820e2328106b1 100644
+index 519b01d123bdaa9f055cb3b331f2ab016b154129..424492810703529219b1eb971e50ba8b52286940 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -151,4 +151,9 @@ public class PearlConfig {
@@ -17,7 +17,7 @@ index fc101a8b3400e788752351e762a5e188ca9dd84a..ad927c3402085888be607dea2ff820e2
 +
 +	public static boolean signRightClickEdit = false;
 +	private static void signSettings() {
-+		signRightClickEdit = getBoolean("sign.right-click-edit", signRightClickEdit, "Allow editing signs when right-click");
++		signRightClickEdit = getBoolean("block.sign.right-click-edit", signRightClickEdit, "Allow editing signs when right-click");
 +	}
  }
 diff --git a/src/main/java/net/minecraft/world/level/block/SignBlock.java b/src/main/java/net/minecraft/world/level/block/SignBlock.java
