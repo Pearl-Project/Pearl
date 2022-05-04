@@ -19,17 +19,17 @@ index 85c9056f92711b985e251f0f06ed551d03deb562..c540694e24978e9e6119267d4f66df52
      public static final PlainComponentSerializer PLAIN_COMPONENT = PlainComponentSerializer.builder().flattener(FLATTENER).build();
      public static final PlainTextComponentSerializer PLAIN = PlainTextComponentSerializer.builder().flattener(FLATTENER).build();
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 424492810703529219b1eb971e50ba8b52286940..cfbcdbbe37ed6782b3dd531813fac43582ecb9c0 100644
+index e9da4cf0bbba823629a261cdd0fd3c371cd58e44..bdbb5110df65875433cc341a2f006bd95a7ae697 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -153,7 +153,9 @@ public class PearlConfig {
+@@ -154,7 +154,9 @@ public class PearlConfig {
  	}
  
  	public static boolean signRightClickEdit = false;
 +	public static boolean signAllowColors = false;
  	private static void signSettings() {
- 		signRightClickEdit = getBoolean("block.sign.right-click-edit", signRightClickEdit, "Allow editing signs when right-click");
-+		signAllowColors = getBoolean("block.sign.allow-colors", signAllowColors, "Allow colors on signs");
+ 		signRightClickEdit = getBoolean("block.sign.right-click-edit", signRightClickEdit);
++		signAllowColors = getBoolean("block.sign.allow-colors", signAllowColors);
  	}
  }
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java

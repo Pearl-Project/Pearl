@@ -7,18 +7,18 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index ceef8394ec011313c371a04dbbceae8eecf0aed0..eea91ab7df6662624ddc28577ed81cd2f0b15c1b 100644
+index fe6bb1b735b5c0e551f74d2ab913b4b708f8487f..95f39be1429ffff6fd49a190a2d73ff075208750 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -136,6 +136,9 @@ public class PearlConfig {
+@@ -137,6 +137,9 @@ public class PearlConfig {
  	private static void mapUpdateInterval() {
- 		mapUpdateInterval = getInt("item.map.update-interval", mapUpdateInterval, "Ticks per map update");
+ 		mapUpdateInterval = getInt("item.map.update-interval", mapUpdateInterval);
  	}
 -	
  
 +	public static boolean useAlternativeKeepalive = false;
 +	private static void useAlternativeKeepalive() {
-+		useAlternativeKeepalive = getBoolean("use-alternative-keepalive", useAlternativeKeepalive, "Use the alternative keepalive method");
++		useAlternativeKeepalive = getBoolean("use-alternative-keepalive", useAlternativeKeepalive);
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java

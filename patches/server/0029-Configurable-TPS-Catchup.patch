@@ -3,19 +3,21 @@ From: William Blake Galbreath <blake.galbreath@gmail.com>
 Date: Thu, 26 Mar 2020 19:06:22 -0500
 Subject: [PATCH] Configurable TPS Catchup
 
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index e2daab34931597d80c30892b3f6e64e192664215..fc101a8b3400e788752351e762a5e188ca9dd84a 100644
+index 169458baae9733c172f82f565a73b006b0b4d218..a3daae91a6230a9a293311840ae661bb251d4192 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -146,4 +146,9 @@ public class PearlConfig {
+@@ -147,4 +147,9 @@ public class PearlConfig {
  	private static void serverModName() {
- 		serverModName = getString("info.server-mod-name", serverModName, "Server software name (Show in F3 and somewhere)");
+ 		serverModName = getString("info.server-mod-name", serverModName);
  	}
 +
 +	public static boolean tpsCatchup = true;
 +	private static void tpsCatchup() {
-+		tpsCatchup = getBoolean("tps-catchup", tpsCatchup, "Enable TPS catchup");
++		tpsCatchup = getBoolean("tps-catchup", tpsCatchup);
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java

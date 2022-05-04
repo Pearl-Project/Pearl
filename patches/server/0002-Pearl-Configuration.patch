@@ -20,10 +20,10 @@ index a5e4467382422df6cff2b9f61f44feabfe7084f3..bd0edc740a863c13003bc3ac7b81276c
          new TimingsExport(listeners, parent, history).start();
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..9b2838ee1616bc5776d2abc301899d47ed3c1474
+index 0000000000000000000000000000000000000000..fc75fdcfcddad84e66988288aef56e90e3f2457c
 --- /dev/null
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-@@ -0,0 +1,136 @@
+@@ -0,0 +1,137 @@
 +package me.minhh2792.pearl;
 +
 +import org.bukkit.configuration.ConfigurationSection;
@@ -80,7 +80,8 @@ index 0000000000000000000000000000000000000000..9b2838ee1616bc5776d2abc301899d47
 +		getInt("info.version", 1, "Don't touch this");
 +		setComment("info",
 +				"Pearl Configuration",
-+				"Configuration file for Pearl");
++				"More details on some option can be found at https://purpurmc.org/docs/",
++				"Join our Discord for help and support: https://discord.gg/ZFAtK5Mx9w");
 +		
 +		for (Method method : PearlConfig.class.getDeclaredMethods()) {
 +			if (Modifier.isStatic(method.getModifiers()) && Modifier.isPrivate(method.getModifiers()) && method.getParameterCount() == 0 &&
