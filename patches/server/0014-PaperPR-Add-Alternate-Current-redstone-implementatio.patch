@@ -1825,7 +1825,7 @@ index 0000000000000000000000000000000000000000..6b5bffd288e2f815d8c3788e73530e69
 +    }
 +}
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-index 8e0c6c3e5fb40928d2290792aaee271bea749fdd..8f7c2212aa26f70629d598339614b6909ebbeb7d 100644
+index 9f0e4bfed860b7e1dbf73ff188013e235baa46e0..5578cc3eb2e3a7aadcda576e6f7c96c6bfecdd7e 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
 @@ -71,8 +71,8 @@ public class PaperConfig {
@@ -1888,18 +1888,18 @@ index ad3f0ff353a0448babde334641d1b1ac94779b07..55f3372959fd30e02ac3e233902749ae
      }
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index a7a589b8f7a97cf0072006e5e05d68cf625b41a1..877c09084490dad9f10c4f8ac8cf051e5b17d436 100644
+index c63ee396e990d11e2f613f3b5a478b486076ed56..8b18f2870f018bc33ceba000d9f1826e70139d37 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
-@@ -215,6 +215,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -212,6 +212,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+     public final UUID uuid;
      public boolean hasPhysicsEvent = true; // Paper
      public boolean hasEntityMoveEvent = false; // Paper
-     public boolean hasRidableMoveEvent = false; // Purpur
 +    private final alternate.current.wire.WireHandler wireHandler = new alternate.current.wire.WireHandler(this); // Paper - optimize redstone (Alternate Current)
      public static Throwable getAddToWorldStackTrace(Entity entity) {
          return new Throwable(entity + " Added to world at " + new java.util.Date());
      }
-@@ -2490,6 +2491,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -2422,6 +2423,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
          return this.entityManager.canPositionTick(pos.toLong()); // Paper
      }
  
@@ -1914,13 +1914,14 @@ index a7a589b8f7a97cf0072006e5e05d68cf625b41a1..877c09084490dad9f10c4f8ac8cf051e
  
          EntityCallbacks() {}
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index a832e18b2604cce395a78b320691164e1b0afff8..189902a66c6621d586f93c90c2fbdd1ea38dab6c 100644
+index 17d73371fa9fab5b5cf16ea4eaebdcb97aac235c..888ac691c6cedce39304a88b88e47df174225d2b 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
-@@ -1656,6 +1656,17 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+@@ -1608,4 +1608,15 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+         return ret;
      }
      // Paper end
- 
++
 +    // Paper start - optimize redstone (Alternate Current)
 +    public alternate.current.wire.WireHandler getWireHandler() {
 +        // This method is overridden in ServerLevel.
@@ -1931,10 +1932,7 @@ index a832e18b2604cce395a78b320691164e1b0afff8..189902a66c6621d586f93c90c2fbdd1e
 +        return null;
 +    }
 +    // Paper end
-+
-     // Purpur start
-     public boolean isNether() {
-         return getWorld().getEnvironment() == org.bukkit.World.Environment.NETHER;
+ }
 diff --git a/src/main/java/net/minecraft/world/level/block/BasePressurePlateBlock.java b/src/main/java/net/minecraft/world/level/block/BasePressurePlateBlock.java
 index 2036006b934ba1f27da606320b4c456af019a361..9d1d59fe26eff0640906037aba93e73dda433d0d 100644
 --- a/src/main/java/net/minecraft/world/level/block/BasePressurePlateBlock.java
@@ -2090,10 +2088,10 @@ index b7605dda79c4d907f5822a0ded694b080e08dae5..ff24cbf03e937572a0c21fe298557d4e
 +    // Paper end
  }
 diff --git a/src/main/java/net/minecraft/world/level/block/ObserverBlock.java b/src/main/java/net/minecraft/world/level/block/ObserverBlock.java
-index be28b5aba28383058548cfb68f98266415367968..f6178a201e59396de706d576d97e2067757a447c 100644
+index 4a34a08a1d46e4d3020644a51d9e30a36a18791a..358a40eb9b4be4d2b5446270f90b51138a19b051 100644
 --- a/src/main/java/net/minecraft/world/level/block/ObserverBlock.java
 +++ b/src/main/java/net/minecraft/world/level/block/ObserverBlock.java
-@@ -91,6 +91,18 @@ public class ObserverBlock extends DirectionalBlock {
+@@ -90,6 +90,18 @@ public class ObserverBlock extends DirectionalBlock {
          return true;
      }
  
@@ -2139,7 +2137,7 @@ index 0afffc33f3be221a28c62115f493808aeffb1bd8..def39cd02da68b9be1ecfa5ae70119ef
      public int getSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
          return 15;
 diff --git a/src/main/java/net/minecraft/world/level/block/RedStoneWireBlock.java b/src/main/java/net/minecraft/world/level/block/RedStoneWireBlock.java
-index 037330bcb10039c013b2ed5fd68dee16ede20fbe..fa5874fc3481ca107a72c24c03b3bd4e65a971dd 100644
+index 037330bcb10039c013b2ed5fd68dee16ede20fbe..dc545de83ef374e70712d5b20beb4b87fef1cf76 100644
 --- a/src/main/java/net/minecraft/world/level/block/RedStoneWireBlock.java
 +++ b/src/main/java/net/minecraft/world/level/block/RedStoneWireBlock.java
 @@ -1,6 +1,7 @@
@@ -2182,7 +2180,7 @@ index 037330bcb10039c013b2ed5fd68dee16ede20fbe..fa5874fc3481ca107a72c24c03b3bd4e
          // following loop can affect the power level of the wire.  Therefore, the loop is
          // skipped if k is already 15.
 -        if (!worldIn.paperConfig.useEigencraftRedstone || k < 15) {
-+        if (worldIn.paperConfig.redstoneImplementation == RedstoneImplementation.VANILLA && k < 15) {
++        if (worldIn.paperConfig.redstoneImplementation == RedstoneImplementation.VANILLA || k < 15) {
              for (Direction enumfacing : Direction.Plane.HORIZONTAL) {
                  BlockPos blockpos = pos1.relative(enumfacing);
                  boolean flag = blockpos.getX() != pos2.getX() || blockpos.getZ() != pos2.getZ();
@@ -2373,7 +2371,7 @@ index a4344bf2267112e3c1e31c07c9f6b8eae9666947..5e973eb53b240615e70b7d46ef4dc17b
      public BlockState rotate(BlockState state, Rotation rotation) {
          return (BlockState) state.setValue(TripWireHookBlock.FACING, rotation.rotate((Direction) state.getValue(TripWireHookBlock.FACING)));
 diff --git a/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java b/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
-index 31cca3aeb9693e2305056228cc5d71dfd8b69979..345c11f506bbbe59b987c890bec07429dd1f124a 100644
+index 8f5a1cfc6dbdf17579150a05c50b9fa9c0287023..97f6b41c1178ee8d10e55248381d7081ce2ba38d 100644
 --- a/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
 +++ b/src/main/java/net/minecraft/world/level/block/state/BlockBehaviour.java
 @@ -70,7 +70,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
@@ -2382,7 +2380,7 @@ index 31cca3aeb9693e2305056228cc5d71dfd8b69979..345c11f506bbbe59b987c890bec07429
  
 -    protected static final Direction[] UPDATE_SHAPE_ORDER = new Direction[]{Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP};
 +    public static final Direction[] UPDATE_SHAPE_ORDER = new Direction[]{Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH, Direction.DOWN, Direction.UP};
-     public final Material material; // Purpur - protected -> public
+     protected final Material material;
      public final boolean hasCollision;
      protected final float explosionResistance;
 @@ -187,6 +187,16 @@ public abstract class BlockBehaviour {

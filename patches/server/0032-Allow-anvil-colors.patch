@@ -1,0 +1,55 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <Blake.Galbreath@GMail.com>
+Date: Tue, 4 Aug 2020 22:08:23 -0500
+Subject: [PATCH] Allow anvil colors
+
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index ab7fb90e987c26fd469ab411899d0af4bd241426..10e02477a3a4de8aa67329ba1dd37efcf389bb54 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -182,4 +182,9 @@ public class PearlConfig {
+ 		signRightClickEdit = getBoolean("blocks.sign.right-click-edit", signRightClickEdit);
+ 		signAllowColors = getBoolean("blocks.sign.allow-colors", signAllowColors);
+ 	}
++
++	public static boolean anvilAllowColors = false;
++	private static void anvilAllowColors() {
++		anvilAllowColors = getBoolean("blocks.anvil.allow-colors", anvilAllowColors);
++	}
+ }
+diff --git a/src/main/java/net/minecraft/world/inventory/AnvilMenu.java b/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
+index ec89526f1eabef4681fed57b74fc1bef5be4c0c1..0e7ab70f17df0656b49936c070aac6806c17e1b0 100644
+--- a/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
++++ b/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
+@@ -3,6 +3,10 @@ package net.minecraft.world.inventory;
+ import com.mojang.logging.LogUtils;
+ import java.util.Iterator;
+ import java.util.Map;
++
++import io.papermc.paper.adventure.PaperAdventure;
++import net.kyori.adventure.text.format.TextDecoration;
++import net.minecraft.nbt.IntTag;
+ import net.minecraft.network.chat.TextComponent;
+ import net.minecraft.tags.BlockTags;
+ import net.minecraft.world.entity.player.Inventory;
+@@ -262,6 +266,17 @@ public class AnvilMenu extends ItemCombinerMenu {
+             } else if (!this.itemName.equals(itemstack.getHoverName().getString())) {
+                 b1 = 1;
+                 i += b1;
++                // Purpur start
++                if (player != null && me.minhh2792.pearl.PearlConfig.anvilAllowColors && player.getBukkitEntity().hasPermission("purpur.anvil.color")) {
++                    final net.kyori.adventure.text.Component renameTextComponent;
++                    if (itemName.startsWith("&r") && player.getBukkitEntity().hasPermission("purpur.anvil.remove_italics")) {
++                        renameTextComponent = PaperAdventure.LEGACY_AMPERSAND.deserialize(itemName.substring(2)).decoration(TextDecoration.ITALIC, false);
++                    } else {
++                        renameTextComponent = PaperAdventure.LEGACY_AMPERSAND.deserialize(itemName);
++                    }
++                    itemstack1.setHoverName(PaperAdventure.asVanilla(renameTextComponent));
++                } else
++                // Purpur end
+                 itemstack1.setHoverName(new TextComponent(this.itemName));
+             }
+ 

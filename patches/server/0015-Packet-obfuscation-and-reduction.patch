@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Cryptite <cryptite@gmail.com>
 Date: Fri, 25 Mar 2022 10:25:27 +0700
-Subject: [PATCH] Slice: Packet obfuscation and reduction
+Subject: [PATCH] Packet obfuscation and reduction
 
 This patch was originally created under the MIT license for the "Slice" project: https://github.com/Cryptite/Slice
 
@@ -149,7 +149,7 @@ index 1d88edfd09a909044f6e3175af652914b4d06311..92cd6e5b2644738cf0a5076d87d77ca6
      }
  }
 diff --git a/src/main/java/net/minecraft/server/level/ServerEntity.java b/src/main/java/net/minecraft/server/level/ServerEntity.java
-index 3bb89fb55638e4050cd4524024a763dd95aa37c9..b1c424ade7bbc27cbb2bfb6c78d88550ff888981 100644
+index d52072ab126f2fdee30bb114f3058338edd72fd5..4c13451289018b195eb1411658661d8aa9137c0d 100644
 --- a/src/main/java/net/minecraft/server/level/ServerEntity.java
 +++ b/src/main/java/net/minecraft/server/level/ServerEntity.java
 @@ -373,7 +373,18 @@ public class ServerEntity {
@@ -173,10 +173,10 @@ index 3bb89fb55638e4050cd4524024a763dd95aa37c9..b1c424ade7bbc27cbb2bfb6c78d88550
  
          if (this.entity instanceof LivingEntity) {
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index c49a4887de6ed1df79adbebb527a5ded28a21077..2fa0c1bc1db9f23ac554b7d7c3abc1f6654f0c6a 100644
+index 5c4eb430ee8ec433ceebbb8c1c8ef9aeb8b8febc..4a821e41b2f6615104ca48f6b9a4f13e73d1d3be 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -3037,7 +3037,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -3012,7 +3012,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
              this.entityData.markDirty(Entity.DATA_AIR_SUPPLY_ID);
              return;
          }
@@ -186,10 +186,10 @@ index c49a4887de6ed1df79adbebb527a5ded28a21077..2fa0c1bc1db9f23ac554b7d7c3abc1f6
      }
  
 diff --git a/src/main/java/net/minecraft/world/entity/player/Player.java b/src/main/java/net/minecraft/world/entity/player/Player.java
-index 5b221b9026ed0a357669a0422bdff2524b5e372a..22eb757844a3704b00fa6ed5e6e1c7941c2cf652 100644
+index 2483d7df7f1bf94344afd38b37602c645a4a2dff..5c16235115a9233bce1f5b30bb020d105bdca3d1 100644
 --- a/src/main/java/net/minecraft/world/entity/player/Player.java
 +++ b/src/main/java/net/minecraft/world/entity/player/Player.java
-@@ -673,7 +673,7 @@ public abstract class Player extends LivingEntity {
+@@ -632,7 +632,7 @@ public abstract class Player extends LivingEntity {
      public void increaseScore(int score) {
          int j = this.getScore();
  
@@ -199,10 +199,10 @@ index 5b221b9026ed0a357669a0422bdff2524b5e372a..22eb757844a3704b00fa6ed5e6e1c794
  
      public void startAutoSpinAttack(int riptideTicks) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index eb5b230aef06e4df57bf92d5a1f771725f6d3a08..a03ae4d0e8c5bc8fc816ffb8adb9909878b432bf 100644
+index f12efe51b14ed3637a8ba45def9c94634a6f5e8f..b3a7ec12abe8228e6394fc085059eaa3dd488a19 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -2227,7 +2227,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2190,7 +2190,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
                  this.sendHealthUpdate();
              }
          }
