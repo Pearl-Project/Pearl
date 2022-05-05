@@ -63,7 +63,7 @@ index e0b1f0671d16ddddcb6725acd25a1d1d69e42701..b2b1835a5646310fdc0aa73da0c4741e
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
 diff --git a/src/main/java/me/minhh2792/pearl/PearlVersionFetcher.java b/src/main/java/me/minhh2792/pearl/PearlVersionFetcher.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..75439b7dd54c654699b024bc9605f04c9ebbeb5c
+index 0000000000000000000000000000000000000000..da88a794ffabc78209aad1b0d91cf5ba025f8d14
 --- /dev/null
 +++ b/src/main/java/me/minhh2792/pearl/PearlVersionFetcher.java
 @@ -0,0 +1,120 @@
@@ -88,7 +88,7 @@ index 0000000000000000000000000000000000000000..75439b7dd54c654699b024bc9605f04c
 +public class PearlVersionFetcher implements VersionFetcher {
 +    private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
 +    private static final String GITHUB_BRANCH_NAME = "main";
-+    private static final String DOWNLOAD_PAGE = "https://github.com/PearlMC/Pearl/releases";
++    private static final String DOWNLOAD_PAGE = "https://github.com/Pearl-Project/Pearl/releases";
 +    private static @Nullable String mcVer;
 +
 +    @Override
@@ -100,7 +100,7 @@ index 0000000000000000000000000000000000000000..75439b7dd54c654699b024bc9605f04c
 +    @Override
 +    public Component getVersionMessage(@Nonnull String serverVersion) {
 +        String[] parts = serverVersion.substring("git-Pearl-".length()).split("[-\\s]");
-+        final Component updateMessage = getUpdateStatusMessage("PearlMC/Pearl", GITHUB_BRANCH_NAME, parts[0]);
++        final Component updateMessage = getUpdateStatusMessage("Pearl-Project/Pearl", GITHUB_BRANCH_NAME, parts[0]);
 +        final Component history = getHistory();
 +
 +        return history != null ? TextComponent.ofChildren(updateMessage, Component.newline(), history) : updateMessage;
