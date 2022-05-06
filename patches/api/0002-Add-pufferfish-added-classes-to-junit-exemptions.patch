@@ -3,6 +3,8 @@ From: BillyGalbreath <Blake.Galbreath@Gmail.com>
 Date: Tue, 4 Jan 2022 23:05:41 -0600
 Subject: [PATCH] Add pufferfish added classes to junit exemptions
 
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/test/java/org/bukkit/AnnotationTest.java b/src/test/java/org/bukkit/AnnotationTest.java
 index 57cf9fab2501da6f1abd12e14697630ca82b0a6d..a5bced98d5b8860f4f05e42cfd8a355c162b8b6e 100644
