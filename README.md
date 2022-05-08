@@ -8,10 +8,9 @@ A fork of Pufferfish with optimization, features and stability
 ## Features
 
 * All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
-* Faster redstone logic by implementing [Alternate Current](https://github.com/SpaceWalkerRS/alternate-current)
 * Packet obfuscation and reduction
 * Gameplay inconsistencies fix
-* Included some Purpur features
+* Included some Purpur features (not too bloated)
 * Compatible with Spigot/Paper plugins
 ## Download 
 

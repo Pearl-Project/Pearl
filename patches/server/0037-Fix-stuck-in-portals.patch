@@ -7,7 +7,7 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
-index 13d5fe7411a709b33dde8ff9a8f6e7006f92708a..35eb77b8d74d47d9c6d4c930bc9af507ec883109 100644
+index 13d5fe7411a709b33dde8ff9a8f6e7006f92708a..ebbf7b631309e80300f991426c50deef7f7a12aa 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
 +++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 @@ -210,4 +210,9 @@ public class PearlConfig {
@@ -17,7 +17,7 @@ index 13d5fe7411a709b33dde8ff9a8f6e7006f92708a..35eb77b8d74d47d9c6d4c930bc9af507
 +
 +	public static boolean playerFixStuckInPortal = false;
 +	private static void playerFixStuckInPortal() {
-+		playerFixStuckInPortal = getBoolean("fix-stuck-in-portal", false);
++		playerFixStuckInPortal = getBoolean("gameplay-mechanics.player.fix-stuck-in-portal", false);
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
