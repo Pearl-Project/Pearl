@@ -3,26 +3,8 @@ From: Cryptite <cryptite@gmail.com>
 Date: Fri, 25 Mar 2022 10:25:27 +0700
 Subject: [PATCH] Packet obfuscation and reduction
 
-This patch was originally created under the MIT license for the "Slice" project: https://github.com/Cryptite/Slice
-
-Minecraft is overzealous about packet updates for Entities. In Loka's case, we want to reduce as many unnecessary
-packet updates as possible. This patch is likely to be updated over and over in terms of reducing packet sends.
-
-In summary, this patch creates the concept of a "foreignValue" of a packet's data. We treat packets in two ways:
-1) The packet sent to the player itself (the normal way). This always has all of the values as usual.
-2) The packet data as seen by any other (foreign) players.
-
-This patch adds the ability to set a "foreignValue" for an entity value so as to obfuscate data received by other players.
-The current packets modified/obfuscated are the following:
-
-# Health - Foreign Players will only receive packets that say the player is "alive or dead (max health or 0 health).
-    # This reduces the amount of health packet updates as well which is great for players in combat.
-
-# Air Level - Foreign players will only ever see a player as having full oxygen
-    # Air level packets are sent PER-TICK, and as such a player with any change in air level will only spam themselves
-    # with packets instead of every single player within tracking distance
-
-# Score - Foreign players will only see a player's score as 0 and will not update due to gathering xp orbs, etc.
+Original code by Cryptite, licensed under MIT License
+You can find the original code on https://github.com/Cryptite/Slice
 
 diff --git a/src/main/java/net/minecraft/network/protocol/game/ClientboundSetEntityDataPacket.java b/src/main/java/net/minecraft/network/protocol/game/ClientboundSetEntityDataPacket.java
 index 3e17f6131bf590d7c4a16b79c1c145cb4f565bc9..e1233fa58d068448d0accef7a7f6725fcb902848 100644
