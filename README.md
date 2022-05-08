@@ -10,7 +10,7 @@ A fork of Pufferfish with optimization, features and stability
 * All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
 * Packet obfuscation and reduction
 * Gameplay inconsistencies fix
-* Included some Purpur features (not too bloated)
+* Included some Purpur features (but not bloated)
 * Compatible with Spigot/Paper plugins
 ## Download 
 
