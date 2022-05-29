@@ -33,7 +33,7 @@ index ec17198a782285027b913299d03e3b72f8b6c522..ab7fb90e987c26fd469ab411899d0af4
  	}
  }
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 2f5e40437d1865a874c352999edd084226d4e47b..e4ed998700acee02f456c00b60bca89d023ff1ab 100644
+index a6edf5117d4ae03d8294e7bb74dd2d77048895a5..327c49189f27698553a5552e5cf01d01a35332b2 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
 @@ -1464,6 +1464,7 @@ public class ServerPlayer extends Player {
@@ -45,7 +45,7 @@ index 2f5e40437d1865a874c352999edd084226d4e47b..e4ed998700acee02f456c00b60bca89d
          this.connection.send(new ClientboundBlockUpdatePacket(this.level, sign.getBlockPos()));
          this.connection.send(new ClientboundOpenSignEditorPacket(sign.getBlockPos()));
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 0cf74fccf0d7860627199e5e35c2afe9a8834fb4..a6563e807e0c1f5f5d76b220ec11f0b0d534932f 100644
+index 05df1cc9279eade9b570cded3d3af227f5ff2c52..475433b50d93a36b8cfd541aa6cddd475e259d5f 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 @@ -3125,11 +3125,15 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
