@@ -7,16 +7,24 @@ A fork of Pufferfish with optimization, features and stability
 
 ## Features
 
-* All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
-* Packet obfuscation and reduction
-* Gameplay inconsistencies fix
-* Included some Purpur features (but not bloated)
-* Compatible with Spigot/Paper plugins
+- All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
+- Packet obfuscation and reduction
+- Gameplay inconsistencies fix
+- Included some Purpur features (but not bloated)
+- Compatible with Spigot/Paper plugins
 ## Download 
 
 Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
 
 By using Pearl, you are agreed to the [Minecraft EULA](https://account.mojang.com/documents/minecraft_eula)
+
+## Server
+
+Some servers are using Pearl that I know
+
+- [MineVN Network](http://minevn.net/discord): A Minecraft server with unique gamemodes and high quality, Pearl is currently being used on Minigames with their own exclusively matchmaking and dynamic scale system
+- [PlaygroundSMP](https://2hg.pw/discord): A Pure-Vanilla SMP server, with a friendly community for everyone
+- [SimpMC Network](https://discord.com/invite/simpmc): A survival oriented server with cool and fun gamemodes like Earth, Skyblock. Currently using Pearl on Earth survival server
 
 ## License
 
