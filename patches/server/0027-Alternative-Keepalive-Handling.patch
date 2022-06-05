@@ -22,7 +22,7 @@ index ca98bdd7df104bcb0e16438fe9f0ff98d3ae7631..cd480ada49fe3451c56e6c788388ddde
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index e1cb4f79b0f2fee0cbb2da71facb45be330d0ef4..05df1cc9279eade9b570cded3d3af227f5ff2c52 100644
+index 7c74aa6a58ec8e95ae1998664826be1e54d4032d..7f56860ea57b029643db28e6e6ca02e57e24b8c7 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 @@ -227,6 +227,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
@@ -55,7 +55,7 @@ index e1cb4f79b0f2fee0cbb2da71facb45be330d0ef4..05df1cc9279eade9b570cded3d3af227
          if (this.keepAlivePending) {
              if (!this.processedDisconnect && elapsedTime >= KEEPALIVE_LIMIT) { // check keepalive limit, don't fire if already disconnected
                  ServerGamePacketListenerImpl.LOGGER.warn("{} was kicked due to keepalive timeout!", this.player.getScoreboardName()); // more info
-@@ -3135,6 +3151,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -3136,6 +3152,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
  
      @Override
      public void handleKeepAlive(ServerboundKeepAlivePacket packet) {

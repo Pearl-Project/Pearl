@@ -7,10 +7,10 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 475433b50d93a36b8cfd541aa6cddd475e259d5f..c3d4b7233372cd6ec5a0c9b88362552442a0a24e 100644
+index 24bbd55d1c4abd15219742a370a5d5a733ec7ef1..4e9bafa9216d642be9009a51075df5770ce88fd5 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-@@ -1218,13 +1218,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -1219,13 +1219,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
                  itemstack1.setTag(nbttagcompound.copy());
              }
  
@@ -30,7 +30,7 @@ index 475433b50d93a36b8cfd541aa6cddd475e259d5f..c3d4b7233372cd6ec5a0c9b883625524
  
              this.updateBookPages(pages, (s) -> {
                  return Component.Serializer.toJson(new TextComponent(s));
-@@ -1236,10 +1239,13 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -1237,10 +1240,13 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
      private void updateBookPages(List<TextFilter.FilteredText> list, UnaryOperator<String> unaryoperator, ItemStack itemstack, int slot, ItemStack handItem) { // CraftBukkit
          ListTag nbttaglist = new ListTag();
  
@@ -46,7 +46,7 @@ index 475433b50d93a36b8cfd541aa6cddd475e259d5f..c3d4b7233372cd6ec5a0c9b883625524
  
              Objects.requireNonNull(nbttaglist);
              stream.forEach(nbttaglist::add);
-@@ -1249,10 +1255,10 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -1250,10 +1256,10 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
  
              for (int j = list.size(); i < j; ++i) {
                  TextFilter.FilteredText itextfilter_a = (TextFilter.FilteredText) list.get(i);
@@ -59,7 +59,7 @@ index 475433b50d93a36b8cfd541aa6cddd475e259d5f..c3d4b7233372cd6ec5a0c9b883625524
  
                  if (!s.equals(s1)) {
                      nbttagcompound.putString(String.valueOf(i), (String) unaryoperator.apply(s1));
-@@ -1268,6 +1274,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -1269,6 +1275,16 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
          this.player.getInventory().setItem(slot, CraftEventFactory.handleEditBookEvent(player, slot, handItem, itemstack)); // CraftBukkit // Paper - Don't ignore result (see other callsite for handleEditBookEvent)
      }
  

@@ -6,18 +6,6 @@ Subject: [PATCH] Signs allow color codes
 Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
-diff --git a/src/main/java/io/papermc/paper/adventure/PaperAdventure.java b/src/main/java/io/papermc/paper/adventure/PaperAdventure.java
-index 85c9056f92711b985e251f0f06ed551d03deb562..c540694e24978e9e6119267d4f66df52bde02fd2 100644
---- a/src/main/java/io/papermc/paper/adventure/PaperAdventure.java
-+++ b/src/main/java/io/papermc/paper/adventure/PaperAdventure.java
-@@ -92,6 +92,7 @@ public final class PaperAdventure {
-         })
-         .build();
-     public static final LegacyComponentSerializer LEGACY_SECTION_UXRC = LegacyComponentSerializer.builder().flattener(FLATTENER).hexColors().useUnusualXRepeatedCharacterHexFormat().build();
-+    public static final LegacyComponentSerializer LEGACY_AMPERSAND = LegacyComponentSerializer.builder().character(LegacyComponentSerializer.AMPERSAND_CHAR).hexColors().build(); // Purpur
-     @Deprecated
-     public static final PlainComponentSerializer PLAIN_COMPONENT = PlainComponentSerializer.builder().flattener(FLATTENER).build();
-     public static final PlainTextComponentSerializer PLAIN = PlainTextComponentSerializer.builder().flattener(FLATTENER).build();
 diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
 index ec17198a782285027b913299d03e3b72f8b6c522..ab7fb90e987c26fd469ab411899d0af4bd241426 100644
 --- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
@@ -45,10 +33,10 @@ index a6edf5117d4ae03d8294e7bb74dd2d77048895a5..327c49189f27698553a5552e5cf01d01
          this.connection.send(new ClientboundBlockUpdatePacket(this.level, sign.getBlockPos()));
          this.connection.send(new ClientboundOpenSignEditorPacket(sign.getBlockPos()));
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 05df1cc9279eade9b570cded3d3af227f5ff2c52..475433b50d93a36b8cfd541aa6cddd475e259d5f 100644
+index 7f56860ea57b029643db28e6e6ca02e57e24b8c7..24bbd55d1c4abd15219742a370a5d5a733ec7ef1 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-@@ -3125,11 +3125,15 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -3126,11 +3126,15 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
                  }
                  // Paper end
  
@@ -70,7 +58,7 @@ index 05df1cc9279eade9b570cded3d3af227f5ff2c52..475433b50d93a36b8cfd541aa6cddd47
              SignChangeEvent event = new SignChangeEvent((org.bukkit.craftbukkit.block.CraftBlock) player.getWorld().getBlockAt(x, y, z), this.player.getBukkitEntity(), lines);
              this.cserver.getPluginManager().callEvent(event);
 diff --git a/src/main/java/net/minecraft/world/level/block/entity/SignBlockEntity.java b/src/main/java/net/minecraft/world/level/block/entity/SignBlockEntity.java
-index d5bcc81a809e3c733c6fc11309bcf0913860edf6..96b70ae604695fbe651f8640be5c6d0e1a3109df 100644
+index d5bcc81a809e3c733c6fc11309bcf0913860edf6..1846aeffc9ad24405ddce0e727552fa6df6e3997 100644
 --- a/src/main/java/net/minecraft/world/level/block/entity/SignBlockEntity.java
 +++ b/src/main/java/net/minecraft/world/level/block/entity/SignBlockEntity.java
 @@ -186,6 +186,23 @@ public class SignBlockEntity extends BlockEntity implements CommandSource { // C
@@ -84,7 +72,7 @@ index d5bcc81a809e3c733c6fc11309bcf0913860edf6..96b70ae604695fbe651f8640be5c6d0e
 +        final Component[] lines = getMessages(filtered);
 +        for (int i = 0; i < 4; i++) {
 +            final var component = io.papermc.paper.adventure.PaperAdventure.asAdventure(lines[i]);
-+            final String line = io.papermc.paper.adventure.PaperAdventure.LEGACY_AMPERSAND.serialize(component);
++            final String line = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacyAmpersand().serialize(component);
 +            final var text = net.kyori.adventure.text.Component.text(line);
 +            final String json = net.kyori.adventure.text.serializer.gson.GsonComponentSerializer.gson().serialize(text);
 +            nbt.putString("Text" + (i + 1), json);

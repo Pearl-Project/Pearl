@@ -21,7 +21,7 @@ index ab7fb90e987c26fd469ab411899d0af4bd241426..10e02477a3a4de8aa67329ba1dd37efc
 +	}
  }
 diff --git a/src/main/java/net/minecraft/world/inventory/AnvilMenu.java b/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
-index ec89526f1eabef4681fed57b74fc1bef5be4c0c1..0e7ab70f17df0656b49936c070aac6806c17e1b0 100644
+index ec89526f1eabef4681fed57b74fc1bef5be4c0c1..9ec9833c6b8a9472853482559cc9995e36030781 100644
 --- a/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
 +++ b/src/main/java/net/minecraft/world/inventory/AnvilMenu.java
 @@ -3,6 +3,10 @@ package net.minecraft.world.inventory;
@@ -43,9 +43,9 @@ index ec89526f1eabef4681fed57b74fc1bef5be4c0c1..0e7ab70f17df0656b49936c070aac680
 +                if (player != null && me.minhh2792.pearl.PearlConfig.anvilAllowColors && player.getBukkitEntity().hasPermission("purpur.anvil.color")) {
 +                    final net.kyori.adventure.text.Component renameTextComponent;
 +                    if (itemName.startsWith("&r") && player.getBukkitEntity().hasPermission("purpur.anvil.remove_italics")) {
-+                        renameTextComponent = PaperAdventure.LEGACY_AMPERSAND.deserialize(itemName.substring(2)).decoration(TextDecoration.ITALIC, false);
++                        renameTextComponent = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacyAmpersand().deserialize(itemName.substring(2)).decoration(TextDecoration.ITALIC, false);
 +                    } else {
-+                        renameTextComponent = PaperAdventure.LEGACY_AMPERSAND.deserialize(itemName);
++                        renameTextComponent = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacyAmpersand().deserialize(itemName);
 +                    }
 +                    itemstack1.setHoverName(PaperAdventure.asVanilla(renameTextComponent));
 +                } else

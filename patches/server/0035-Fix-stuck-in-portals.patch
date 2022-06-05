@@ -33,10 +33,10 @@ index 327c49189f27698553a5552e5cf01d01a35332b2..d3ab629fcd597571103fcb182528959d
                  // CraftBukkit end
                  this.setLevel(worldserver);
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index ff461c216ea1cf54b21ab2b1a7942e60f3a3f98a..b6c65b6ade22bc57aed0ec41dfc815f7fb977298 100644
+index e487c32628aa776d4162a23665c3588e15178854..6ae14fc47d5f088f5742ccc8cd365b9a4239c27c 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -2763,12 +2763,15 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -2770,12 +2770,15 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          return Vec3.directionFromRotation(this.getRotationVector());
      }
  

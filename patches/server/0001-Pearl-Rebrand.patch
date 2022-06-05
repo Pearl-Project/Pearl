@@ -5,7 +5,7 @@ Subject: [PATCH] Pearl Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 9521971e9e597834e785b36d1657064dc1621b9b..4a973de1682460d0086e2bda3329eed28572b222 100644
+index b04e9ab317fbce9c090b61076eb07c40f069dc59..ee6ad613aee2a41ccb8cede04181f626e7d416e7 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -9,7 +9,7 @@ plugins {
@@ -17,7 +17,7 @@ index 9521971e9e597834e785b36d1657064dc1621b9b..4a973de1682460d0086e2bda3329eed2
      // Pufferfish start
      implementation("io.papermc.paper:paper-mojangapi:1.18.2-R0.1-SNAPSHOT") {
          exclude("io.papermc.paper", "paper-api")
-@@ -78,7 +78,7 @@ tasks.jar {
+@@ -80,7 +80,7 @@ tasks.jar {
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
@@ -223,7 +223,7 @@ index 303b70f0433ff49a3bee2a0d92c41f01aec38bee..50de640d70fcaf928c2c538d39f1d3db
  
      private static final int DEFAULT_SIZE_THRESHOLD = 1024 * 8;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index f4a82b1f2dc26f938d3dcb23ec32f135a1bfd163..72c07366e13b40d56ef3e81cf05b78a51355e1ef 100644
+index ce1ca033b351785fb67304b8933990d7f2f22d29..294506b8befb528da56a3e1a941476853c58128d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -249,7 +249,7 @@ import javax.annotation.Nullable; // Paper
@@ -262,7 +262,7 @@ index cdefb2025eedea7e204d70d568adaf1c1ec4c03c..1fa82e34f61a573524f9ec380e4268e6
                  // (async tasks must live with race-conditions if they attempt to cancel between these few lines of code)
              }
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-index 7e06f263cf618b82f77101ef86d819d5dc37a24e..5a60f28fde279887f09fb18391afb4c4519a1161 100644
+index f71af7ecad4b6b0328da8cf8c4e5a8e163866e19..8d948080af2553859daf04cf05b70e5979098378 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 @@ -430,7 +430,7 @@ public final class CraftMagicNumbers implements UnsafeValues {
