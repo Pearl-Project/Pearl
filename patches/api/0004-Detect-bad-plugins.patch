@@ -84,7 +84,7 @@ index 6e464d93bd6f60dd511d1bc33d344ffc901899c5..f78916532cfb5e71eb107a0eb43f0f2d
  
 +        // Pearl start
 +        if (hasBadPluginsInstalled) {
-+            server.getLogger().log(Level.WARNING, "[Pearl] You may consider remove it in order to maintain stability and performance");
++            server.getLogger().log(Level.WARNING, "[Pearl] You may consider removing it in order to maintain stability and performance");
 +        }
 +        // Pearl end
 +
