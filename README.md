@@ -1,11 +1,12 @@
 # Pearl
-A fork of Pufferfish with optimization, features and stability
+A customized Pufferfish fork
 
 [![Build status](https://img.shields.io/github/workflow/status/Pearl-Project/Pearl/Build?logo=github&style=for-the-badge)](https://github.com/Pearl-Project/Pearl/actions)
 [![Release](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)](https://github.com/Pearl-Project/Pearl/releases)
 [![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
 
 ## Features
+Pearl included some optimization and gameplay features that are cherry picked from other projects
 
 - All [Pufferfish](https://github.com/pufferfish-gg/Pufferfish) features and its upstream
 - Packet obfuscation and reduction
@@ -15,8 +16,6 @@ A fork of Pufferfish with optimization, features and stability
 ## Download 
 
 Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
-
-By using Pearl, you are agreed to the [Minecraft EULA](https://account.mojang.com/documents/minecraft_eula)
 
 ## Server
 
