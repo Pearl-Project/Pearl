@@ -24,12 +24,12 @@ jobs:
           ./gradlew applyPatches --stacktrace
           ./gradlew createReobfPaperclipJar --stacktrace
           mkdir -p target
-          cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+          cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-launcher.jar
       - name: Archive Paperclip
         uses: actions/upload-artifact@v2
         with:
           name: "Pearl-${{ steps.version.outputs.mcversion }}"
-          path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+          path: ./target/pearl-launcher.jar
       - name: Release
         if: github.ref_name == 'main'
         uses: "marvinpinto/action-automatic-releases@latest"

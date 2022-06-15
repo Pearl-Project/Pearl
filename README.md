@@ -15,7 +15,7 @@ Pearl included some optimization and gameplay features that are cherry picked fr
 - Compatible with Spigot/Paper plugins
 ## Download 
 
-Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
+Latest build (1.19): [Download](https://github.com/Pearl-Project/Pearl/releases)
 
 ## Server
 
