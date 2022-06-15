@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Minh Nguyen <minhh2792.work@gmail.com>
+Date: Mon, 2 May 2022 12:24:33 +0000
+Subject: [PATCH] Clean up messages
+
+
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+index ea481e36d86bd025052237ae7c150e248d72a836..69c9172eb87258524a9107c985dca52690a9925f 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+@@ -270,7 +270,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         try {
+             this.getConnection().bind(bindAddress); // Paper - Unix domain socket support
+         } catch (IOException ioexception) {
+-            DedicatedServer.LOGGER.warn("**** FAILED TO BIND TO PORT!");
++            DedicatedServer.LOGGER.warn("FAILED TO BIND TO PORT!");
+             DedicatedServer.LOGGER.warn("The exception was: {}", ioexception.toString());
+             DedicatedServer.LOGGER.warn("Perhaps a server is already running on that port?");
+             return false;
+@@ -283,7 +283,8 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         // CraftBukkit end
+ 
+         if (!this.usesAuthentication()) {
+-            DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
++            DedicatedServer.LOGGER.warn("SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
++            /*
+             DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
+             // Spigot start
+             if (org.spigotmc.SpigotConfig.bungee) {
+@@ -294,6 +295,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+             }
+             // Spigot end
+             DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
++            */
+         }
+ 
+ 

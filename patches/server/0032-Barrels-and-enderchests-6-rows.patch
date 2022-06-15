@@ -1,0 +1,277 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <blake.galbreath@gmail.com>
+Date: Thu, 23 May 2019 21:50:37 -0500
+Subject: [PATCH] Barrels and enderchests 6 rows
+
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index 10e02477a3a4de8aa67329ba1dd37efcf389bb54..13d5fe7411a709b33dde8ff9a8f6e7006f92708a 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -1,5 +1,6 @@
+ package me.minhh2792.pearl;
+ 
++import org.bukkit.Bukkit;
+ import org.bukkit.configuration.ConfigurationSection;
+ import org.bukkit.configuration.MemoryConfiguration;
+ import net.minecraft.server.MinecraftServer;
+@@ -187,4 +188,26 @@ public class PearlConfig {
+ 	private static void anvilAllowColors() {
+ 		anvilAllowColors = getBoolean("blocks.anvil.allow-colors", anvilAllowColors);
+ 	}
++
++	public static int barrelRows = 3;
++	public static boolean enderChestSixRows = false;
++	public static boolean enderChestPermissionRows = false;
++	private static void enderChestAndBarrelSettings() {
++		barrelRows = getInt("blocks.barrel.rows", barrelRows);
++		if (barrelRows < 1 || barrelRows > 6) {
++			Bukkit.getLogger().severe("blocks.barrel.rows must be 1-6, resetting to default");
++			barrelRows = 3;
++		}
++		org.bukkit.event.inventory.InventoryType.BARREL.setDefaultSize(switch (barrelRows) {
++			case 6 -> 54;
++            case 5 -> 45;
++            case 4 -> 36;
++            case 2 -> 18;
++            case 1 -> 9;
++            default -> 27;
++		});
++		enderChestSixRows = getBoolean("blocks.ender_chest.six-rows", enderChestSixRows);
++		org.bukkit.event.inventory.InventoryType.ENDER_CHEST.setDefaultSize(enderChestSixRows ? 54 : 27);
++		enderChestPermissionRows = getBoolean("blocks.ender_chest.use-permissions-for-rows", enderChestPermissionRows);
++	}
+ }
+diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
+index 20cdfdb3b9351f74e89bc45b3ab972384165659a..2e845d7126ff0df11e2dc7fb7c91929eb162d768 100644
+--- a/src/main/java/net/minecraft/server/players/PlayerList.java
++++ b/src/main/java/net/minecraft/server/players/PlayerList.java
+@@ -1178,6 +1178,27 @@ public abstract class PlayerList {
+         player.getBukkitEntity().recalculatePermissions(); // CraftBukkit
+         this.server.getCommands().sendCommands(player);
+         } // Paper
++
++        // Purpur start
++        if (me.minhh2792.pearl.PearlConfig.enderChestSixRows && me.minhh2792.pearl.PearlConfig.enderChestPermissionRows) {
++            org.bukkit.craftbukkit.entity.CraftHumanEntity bukkit = player.getBukkitEntity();
++            if (bukkit.hasPermission("purpur.enderchest.rows.six")) {
++                player.sixRowEnderchestSlotCount = 54;
++            } else if (bukkit.hasPermission("purpur.enderchest.rows.five")) {
++                player.sixRowEnderchestSlotCount = 45;
++            } else if (bukkit.hasPermission("purpur.enderchest.rows.four")) {
++                player.sixRowEnderchestSlotCount = 36;
++            } else if (bukkit.hasPermission("purpur.enderchest.rows.three")) {
++                player.sixRowEnderchestSlotCount = 27;
++            } else if (bukkit.hasPermission("purpur.enderchest.rows.two")) {
++                player.sixRowEnderchestSlotCount = 18;
++            } else if (bukkit.hasPermission("purpur.enderchest.rows.one")) {
++                player.sixRowEnderchestSlotCount = 9;
++            }
++        } else {
++            player.sixRowEnderchestSlotCount = -1;
++        }
++        //Purpur end
+     }
+ 
+     public boolean isWhiteListed(GameProfile profile) {
+diff --git a/src/main/java/net/minecraft/world/entity/player/Player.java b/src/main/java/net/minecraft/world/entity/player/Player.java
+index b22e4068407f3012b62683abd060509829e61c62..a406e23aa13c3773c3066cc0f54d342f8d3b56b3 100644
+--- a/src/main/java/net/minecraft/world/entity/player/Player.java
++++ b/src/main/java/net/minecraft/world/entity/player/Player.java
+@@ -186,6 +186,7 @@ public abstract class Player extends LivingEntity {
+     // Paper start
+     public boolean affectsSpawning = true;
+     // Paper end
++    public int sixRowEnderchestSlotCount = -1; // Purpur
+ 
+     // CraftBukkit start
+     public boolean fauxSleeping;
+diff --git a/src/main/java/net/minecraft/world/inventory/ChestMenu.java b/src/main/java/net/minecraft/world/inventory/ChestMenu.java
+index e9d9245f7efaaeefc8f107b8016a462ce173816a..56dcc1b6ceaad998be62e3b8c125e8f5e833e4c0 100644
+--- a/src/main/java/net/minecraft/world/inventory/ChestMenu.java
++++ b/src/main/java/net/minecraft/world/inventory/ChestMenu.java
+@@ -67,10 +67,30 @@ public class ChestMenu extends AbstractContainerMenu {
+         return new ChestMenu(MenuType.GENERIC_9x6, syncId, playerInventory, 6);
+     }
+ 
++    // Purpur start
++    public static ChestMenu oneRow(int syncId, Inventory playerInventory, Container inventory) {
++        return new ChestMenu(MenuType.GENERIC_9x1, syncId, playerInventory, inventory, 1);
++    }
++
++    public static ChestMenu twoRows(int syncId, Inventory playerInventory, Container inventory) {
++        return new ChestMenu(MenuType.GENERIC_9x2, syncId, playerInventory, inventory, 2);
++    }
++    // Purpur end
++
+     public static ChestMenu threeRows(int syncId, Inventory playerInventory, Container inventory) {
+         return new ChestMenu(MenuType.GENERIC_9x3, syncId, playerInventory, inventory, 3);
+     }
+ 
++    // Purpur start
++    public static ChestMenu fourRows(int syncId, Inventory playerInventory, Container inventory) {
++        return new ChestMenu(MenuType.GENERIC_9x4, syncId, playerInventory, inventory, 4);
++    }
++
++    public static ChestMenu fiveRows(int syncId, Inventory playerInventory, Container inventory) {
++        return new ChestMenu(MenuType.GENERIC_9x5, syncId, playerInventory, inventory, 5);
++    }
++    // Purpur end
++
+     public static ChestMenu sixRows(int syncId, Inventory playerInventory, Container inventory) {
+         return new ChestMenu(MenuType.GENERIC_9x6, syncId, playerInventory, inventory, 6);
+     }
+diff --git a/src/main/java/net/minecraft/world/inventory/PlayerEnderChestContainer.java b/src/main/java/net/minecraft/world/inventory/PlayerEnderChestContainer.java
+index 59acb1aab21e2dce0f046942f124b50ac1cb8d0f..5ac5c5e8d0cd2340ff10bb5835686dec1059d670 100644
+--- a/src/main/java/net/minecraft/world/inventory/PlayerEnderChestContainer.java
++++ b/src/main/java/net/minecraft/world/inventory/PlayerEnderChestContainer.java
+@@ -29,11 +29,18 @@ public class PlayerEnderChestContainer extends SimpleContainer {
+     }
+ 
+     public PlayerEnderChestContainer(Player owner) {
+-        super(27);
++        super(me.minhh2792.pearl.PearlConfig.enderChestSixRows ? 54 : 27); // Purpur
+         this.owner = owner;
+         // CraftBukkit end
+     }
+ 
++    // Purpur start
++    @Override
++    public int getContainerSize() {
++        return owner.sixRowEnderchestSlotCount < 0 ? super.getContainerSize() : owner.sixRowEnderchestSlotCount;
++    }
++    // Purpur end
++
+     public void setActiveChest(EnderChestBlockEntity blockEntity) {
+         this.activeChest = blockEntity;
+     }
+diff --git a/src/main/java/net/minecraft/world/level/block/EnderChestBlock.java b/src/main/java/net/minecraft/world/level/block/EnderChestBlock.java
+index 7385e91f32f070e86a4e0fd3d214f55d832c7979..3e750e8d7a196838d8fc3f2d5439b16105576a1f 100644
+--- a/src/main/java/net/minecraft/world/level/block/EnderChestBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/EnderChestBlock.java
+@@ -85,6 +85,27 @@ public class EnderChestBlock extends AbstractChestBlock<EnderChestBlockEntity> i
+                 EnderChestBlockEntity enderChestBlockEntity = (EnderChestBlockEntity)blockEntity;
+                 playerEnderChestContainer.setActiveChest(enderChestBlockEntity);
+                 player.openMenu(new SimpleMenuProvider((syncId, inventory, playerx) -> {
++                    // Purpur start
++                    if (me.minhh2792.pearl.PearlConfig.enderChestSixRows) {
++                        if (me.minhh2792.pearl.PearlConfig.enderChestPermissionRows) {
++                            org.bukkit.craftbukkit.entity.CraftHumanEntity bukkitPlayer = player.getBukkitEntity();
++                            if (bukkitPlayer.hasPermission("purpur.enderchest.rows.six")) {
++                                return ChestMenu.sixRows(syncId, inventory, playerEnderChestContainer);
++                            } else if (bukkitPlayer.hasPermission("purpur.enderchest.rows.five")) {
++                                return ChestMenu.fiveRows(syncId, inventory, playerEnderChestContainer);
++                            } else if (bukkitPlayer.hasPermission("purpur.enderchest.rows.four")) {
++                                return ChestMenu.fourRows(syncId, inventory, playerEnderChestContainer);
++                            } else if (bukkitPlayer.hasPermission("purpur.enderchest.rows.three")) {
++                                return ChestMenu.threeRows(syncId, inventory, playerEnderChestContainer);
++                            } else if (bukkitPlayer.hasPermission("purpur.enderchest.rows.two")) {
++                                return ChestMenu.twoRows(syncId, inventory, playerEnderChestContainer);
++                            } else if (bukkitPlayer.hasPermission("purpur.enderchest.rows.one")) {
++                                return ChestMenu.oneRow(syncId, inventory, playerEnderChestContainer);
++                            }
++                        }
++                        return ChestMenu.sixRows(syncId, inventory, playerEnderChestContainer);
++                    }
++                    // Purpur end
+                     return ChestMenu.threeRows(syncId, inventory, playerEnderChestContainer);
+                 }, CONTAINER_TITLE));
+                 player.awardStat(Stats.OPEN_ENDERCHEST);
+diff --git a/src/main/java/net/minecraft/world/level/block/entity/BarrelBlockEntity.java b/src/main/java/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
+index f52487e1cfcfab1bf22ab2cb52f998283a86e340..2ed8a694c1bf20e5a0f0bb494f822d77900df5a4 100644
+--- a/src/main/java/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
++++ b/src/main/java/net/minecraft/world/level/block/entity/BarrelBlockEntity.java
+@@ -67,7 +67,16 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity {
+ 
+     public BarrelBlockEntity(BlockPos pos, BlockState state) {
+         super(BlockEntityType.BARREL, pos, state);
+-        this.items = NonNullList.withSize(27, ItemStack.EMPTY);
++        // Purpur start
++        this.items = NonNullList.withSize(switch (me.minhh2792.pearl.PearlConfig.barrelRows) {
++            case 6 -> 54;
++            case 5 -> 45;
++            case 4 -> 36;
++            case 2 -> 18;
++            case 1 -> 9;
++            default -> 27;
++        }, ItemStack.EMPTY);
++        // Purpur end
+         this.openersCounter = new ContainerOpenersCounter() {
+             @Override
+             protected void onOpen(Level world, BlockPos pos, BlockState state) {
+@@ -118,7 +127,16 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity {
+ 
+     @Override
+     public int getContainerSize() {
+-        return 27;
++        // Purpur start
++        return switch (me.minhh2792.pearl.PearlConfig.barrelRows) {
++            case 6 -> 54;
++            case 5 -> 45;
++            case 4 -> 36;
++            case 2 -> 18;
++            case 1 -> 9;
++            default -> 27;
++        };
++        // Purpur end
+     }
+ 
+     @Override
+@@ -138,7 +156,16 @@ public class BarrelBlockEntity extends RandomizableContainerBlockEntity {
+ 
+     @Override
+     protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
+-        return ChestMenu.threeRows(syncId, playerInventory, this);
++        // Purpur start
++        return switch (me.minhh2792.pearl.PearlConfig.barrelRows) {
++            case 6 -> ChestMenu.sixRows(syncId, playerInventory, this);
++            case 5 -> ChestMenu.fiveRows(syncId, playerInventory, this);
++            case 4 -> ChestMenu.fourRows(syncId, playerInventory, this);
++            case 2 -> ChestMenu.twoRows(syncId, playerInventory, this);
++            case 1 -> ChestMenu.oneRow(syncId, playerInventory, this);
++            default -> ChestMenu.threeRows(syncId, playerInventory, this);
++        };
++        // Purpur end
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftContainer.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftContainer.java
+index a2eeaad280569c9ab2c02d2885611db50462bf2b..0441c3c892fcd418076efe52fad90399a23f0e10 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftContainer.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftContainer.java
+@@ -165,8 +165,19 @@ public class CraftContainer extends AbstractContainerMenu {
+             case PLAYER:
+             case CHEST:
+             case ENDER_CHEST:
++                // Purpur start
++                this.delegate = new ChestMenu(me.minhh2792.pearl.PearlConfig.enderChestSixRows ? MenuType.GENERIC_9x6 : MenuType.GENERIC_9x3, windowId, bottom, top, top.getContainerSize() / 9);
++                break;
+             case BARREL:
+-                this.delegate = new ChestMenu(MenuType.GENERIC_9x3, windowId, bottom, top, top.getContainerSize() / 9);
++                this.delegate = new ChestMenu(switch (me.minhh2792.pearl.PearlConfig.barrelRows) {
++                    case 6 -> MenuType.GENERIC_9x6;
++                    case 5 -> MenuType.GENERIC_9x5;
++                    case 4 -> MenuType.GENERIC_9x4;
++                    case 2 -> MenuType.GENERIC_9x2;
++                    case 1 -> MenuType.GENERIC_9x1;
++                    default -> MenuType.GENERIC_9x3;
++                }, windowId, bottom, top, top.getContainerSize() / 9);
++                // Purpur end
+                 break;
+             case DISPENSER:
+             case DROPPER:
+diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
+index 30ac442049088200e9ab77a561c59cbc58aaa28f..fb3c3c32b89e6a99b50bd04163d29892bbd08256 100644
+--- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
++++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftInventory.java
+@@ -81,7 +81,7 @@ public class CraftInventory implements Inventory {
+ 
+     @Override
+     public void setContents(ItemStack[] items) {
+-        if (this.getSize() < items.length) {
++        if (false && this.getSize() < items.length) { // Purpur
+             throw new IllegalArgumentException("Invalid inventory size; expected " + this.getSize() + " or less");
+         }
+ 

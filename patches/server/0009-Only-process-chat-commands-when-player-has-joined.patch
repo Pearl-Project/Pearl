@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: chickeneer <emcchickeneer@gmail.com>
+Date: Thu, 3 Mar 2022 14:40:40 +0700
+Subject: [PATCH] Only process chat/commands when player has joined
+
+Original code by starlis
+You can find the original code on https://github.com/starlis/empirecraft
+
+diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+index 60373551c49386652de286127636b61f31e88527..f0220f2faec4dbeb0940425148d85f8e7350ed6c 100644
+--- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -2210,6 +2210,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+ 
+             this.send(new ClientboundSystemChatPacket(Component.translatable("chat.disabled.options").withStyle(ChatFormatting.RED), i));
+             return false;
++        } else if (!player.didPlayerJoinEvent) { return false; // EMC - do not handle chat messages before they joined
+         } else {
+             this.player.resetLastActionTime();
+             return true;

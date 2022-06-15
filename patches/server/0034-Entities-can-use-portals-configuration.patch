@@ -1,0 +1,44 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: William Blake Galbreath <Blake.Galbreath@GMail.com>
+Date: Mon, 17 Aug 2020 19:32:05 -0500
+Subject: [PATCH] Entities can use portals configuration
+
+Original code by PurpurMC, licensed under MIT License
+You can find the original code on https://github.com/PurpurMC/Purpur
+
+diff --git a/src/main/java/me/minhh2792/pearl/PearlConfig.java b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+index ebbf7b631309e80300f991426c50deef7f7a12aa..da2f7c5f083248206b476230c30e7049e267dd9c 100644
+--- a/src/main/java/me/minhh2792/pearl/PearlConfig.java
++++ b/src/main/java/me/minhh2792/pearl/PearlConfig.java
+@@ -215,4 +215,9 @@ public class PearlConfig {
+ 	private static void playerFixStuckInPortal() {
+ 		playerFixStuckInPortal = getBoolean("gameplay-mechanics.player.fix-stuck-in-portal", false);
+ 	}
++
++	public static boolean entitiesCanUsePortals = true;
++	private static void entitiesCanUsePortals() {
++		entitiesCanUsePortals = getBoolean("gameplay-mechanics.entities-can-use-portals", true);
++	}
+ }
+diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
+index 7e4f685cff05adef6cdf0b4e07b50a5295925f3a..6c5065a1be275db138871505ed158be87436b606 100644
+--- a/src/main/java/net/minecraft/world/entity/Entity.java
++++ b/src/main/java/net/minecraft/world/entity/Entity.java
+@@ -2858,7 +2858,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+         if (this.isOnPortalCooldown()) {
+             if (!(me.minhh2792.pearl.PearlConfig.playerFixStuckInPortal && this instanceof Player && !pos.equals(portalPos))) // Purpur
+             this.setPortalCooldown();
+-        } else {
++        } else if (me.minhh2792.pearl.PearlConfig.entitiesCanUsePortals || this instanceof ServerPlayer) { // Purpur
+             if (!this.level.isClientSide && !pos.equals(this.portalEntrancePos)) {
+                 this.portalEntrancePos = pos.immutable();
+                 portalPos = BlockPos.ZERO; // Purpur
+@@ -3524,7 +3524,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+     }
+ 
+     public boolean canChangeDimensions() {
+-        return isAlive() && valid; // Paper
++        return isAlive() && valid && (me.minhh2792.pearl.PearlConfig.entitiesCanUsePortals || this instanceof ServerPlayer); // Paper // Purpur
+     }
+ 
+     public float getBlockExplosionResistance(Explosion explosion, BlockGetter world, BlockPos pos, BlockState blockState, FluidState fluidState, float max) {
