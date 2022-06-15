@@ -5,10 +5,10 @@ Subject: [PATCH] Detect bad plugins
 
 
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 6e464d93bd6f60dd511d1bc33d344ffc901899c5..f78916532cfb5e71eb107a0eb43f0f2d12d12da3 100644
+index 9aee6ec65abf059cb9c40ed318f0995813940335..4e5dddedc32f19c0bd2a14a4a2fc383eef151024 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-@@ -43,6 +43,13 @@ import org.bukkit.permissions.PermissionDefault;
+@@ -38,6 +38,13 @@ import org.bukkit.permissions.PermissionDefault;
  import org.bukkit.util.FileUtil;
  import org.jetbrains.annotations.NotNull;
  import org.jetbrains.annotations.Nullable;
@@ -22,7 +22,7 @@ index 6e464d93bd6f60dd511d1bc33d344ffc901899c5..f78916532cfb5e71eb107a0eb43f0f2d
  
  /**
   * Handles all plugin management from the Server
-@@ -137,6 +144,42 @@ public final class SimplePluginManager implements PluginManager {
+@@ -132,6 +139,42 @@ public final class SimplePluginManager implements PluginManager {
          Map<String, Collection<String>> dependencies = new HashMap<String, Collection<String>>();
          Map<String, Collection<String>> softDependencies = new HashMap<String, Collection<String>>();
  
@@ -65,7 +65,7 @@ index 6e464d93bd6f60dd511d1bc33d344ffc901899c5..f78916532cfb5e71eb107a0eb43f0f2d
          // This is where it figures out all possible plugins
          // Paper start - extra jars
          final List<File> pluginJars = new ArrayList<>(java.util.Arrays.asList(directory.listFiles()));
-@@ -165,6 +208,12 @@ public final class SimplePluginManager implements PluginManager {
+@@ -160,6 +203,12 @@ public final class SimplePluginManager implements PluginManager {
                      server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "': uses the space-character (0x20) in its name"); // Paper
                      continue;
                  }
@@ -78,7 +78,7 @@ index 6e464d93bd6f60dd511d1bc33d344ffc901899c5..f78916532cfb5e71eb107a0eb43f0f2d
              } catch (InvalidDescriptionException ex) {
                  server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'", ex); // Paper
                  continue;
-@@ -253,6 +302,12 @@ public final class SimplePluginManager implements PluginManager {
+@@ -248,6 +297,12 @@ public final class SimplePluginManager implements PluginManager {
              }
          }
  
