@@ -21,10 +21,10 @@ index ec17198a782285027b913299d03e3b72f8b6c522..ab7fb90e987c26fd469ab411899d0af4
  	}
  }
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index c8057f98e16ba6e19640e0b250e5201e0f4f57db..337bb9b648d6851809b8edbc5dfbbbc761d25ec2 100644
+index 353463084d90eb684717e65c56da52cd25a1e375..46def5d84bbb64242a8a7520eca57b0f0270d508 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-@@ -1473,6 +1473,7 @@ public class ServerPlayer extends Player {
+@@ -1479,6 +1479,7 @@ public class ServerPlayer extends Player {
  
      @Override
      public void openTextEdit(SignBlockEntity sign) {
