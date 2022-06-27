@@ -24,7 +24,7 @@ jobs:
           ./gradlew applyPatches --stacktrace
           ./gradlew createReobfPaperclipJar --stacktrace
           mkdir -p target
-          cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-launcher.jar
+          cp ./build/libs/pearl-paperclip-${{ steps.version.outputs.version }}-reobf.jar ./target/pearl-launcher-${{ steps.version.outputs.mcversion }}.jar
       - name: Archive Paperclip
         uses: actions/upload-artifact@v2
         with:
