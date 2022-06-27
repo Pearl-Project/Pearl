@@ -2,7 +2,7 @@
 A customized Pufferfish fork
 
 [![Build status](https://img.shields.io/github/workflow/status/Pearl-Project/Pearl/Build?logo=github&style=for-the-badge)](https://github.com/Pearl-Project/Pearl/actions)
-[![Release](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)](https://github.com/Pearl-Project/Pearl/releases)
+[![Release](https://img.shields.io/github/v/release/Pearl-Project/Pearl?style=for-the-badge)](https://github.com/Pearl-Project/Pearl/releases/)
 [![Discord](https://img.shields.io/discord/951410587030667294.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2&style=for-the-badge)](https://discord.gg/ZFAtK5Mx9w)
 
 ## Features
@@ -15,7 +15,7 @@ Pearl included some optimization and gameplay features that are cherry picked fr
 - Compatible with Spigot/Paper plugins
 ## Download
 
-Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
+Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases/tag/1.18.2)
 
 ## Server
 

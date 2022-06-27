@@ -31,7 +31,7 @@ jobs:
           name: "Pearl-${{ steps.version.outputs.mcversion }}"
           path: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
       - name: Release
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'ver/1.18.2'
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
