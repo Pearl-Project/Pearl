@@ -13,7 +13,7 @@ Pearl included some optimization and gameplay features that are cherry picked fr
 - Gameplay inconsistencies fix
 - Included some Purpur features (but not bloated)
 - Compatible with Spigot/Paper plugins
-## Download 
+## Download
 
 Latest build (1.18.2): [Download](https://github.com/Pearl-Project/Pearl/releases)
 
