@@ -37,5 +37,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "${{ steps.version.outputs.mcversion }}"
           prerelease: false
-          title: "Pearl ${{ steps.version.outputs.mcversion }}"
-          files: ./target/Pearl-${{ steps.version.outputs.mcversion }}.jar
+          title: "Pearl Launcher ${{ steps.version.outputs.mcversion }}"
+          files: ./target/pearl-launcher-${{ steps.version.outputs.mcversion }}.jar
