@@ -5,10 +5,10 @@ Subject: [PATCH] Pearl Configuration
 
 
 diff --git a/src/main/java/co/aikar/timings/TimingsExport.java b/src/main/java/co/aikar/timings/TimingsExport.java
-index a5e4467382422df6cff2b9f61f44feabfe7084f3..bd0edc740a863c13003bc3ac7b81276cceb9d387 100644
+index 2cc44fbf8e5bd436b6d4e19f6c06b351e750cb31..3c0e152e644c8c8d0d3da30c3085fecc08f84251 100644
 --- a/src/main/java/co/aikar/timings/TimingsExport.java
 +++ b/src/main/java/co/aikar/timings/TimingsExport.java
-@@ -239,7 +239,8 @@ public class TimingsExport extends Thread {
+@@ -242,7 +242,8 @@ public class TimingsExport extends Thread {
              pair("spigot", mapAsJSON(Bukkit.spigot().getSpigotConfig(), null)),
              pair("bukkit", mapAsJSON(Bukkit.spigot().getBukkitConfig(), null)),
              pair("paper", mapAsJSON(Bukkit.spigot().getPaperConfig(), null)), // Pufferfish

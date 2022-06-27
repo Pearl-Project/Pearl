@@ -188,10 +188,10 @@ index 0000000000000000000000000000000000000000..da88a794ffabc78209aad1b0d91cf5ba
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 371b0f95b23d67c9913875a3dd7888e722551f18..9f5070df29f31b95c21b433dad91565ad0744e8e 100644
+index bcaa260af741c00b1fd762c9dca3d3c06d4a1b86..72fd6e9831cbd64e97799f7487575ffc8c625178 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -956,7 +956,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -957,7 +957,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
          shutdownThread = Thread.currentThread();
          org.spigotmc.WatchdogThread.doStop(); // Paper
          if (!isSameThread()) {
@@ -200,7 +200,7 @@ index 371b0f95b23d67c9913875a3dd7888e722551f18..9f5070df29f31b95c21b433dad91565a
              while (this.getRunningThread().isAlive()) {
                  this.getRunningThread().stop();
                  try {
-@@ -1695,7 +1695,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -1698,7 +1698,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
  
      @DontObfuscate
      public String getServerModName() {
@@ -223,7 +223,7 @@ index 303b70f0433ff49a3bee2a0d92c41f01aec38bee..50de640d70fcaf928c2c538d39f1d3db
  
      private static final int DEFAULT_SIZE_THRESHOLD = 1024 * 8;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index ce1ca033b351785fb67304b8933990d7f2f22d29..294506b8befb528da56a3e1a941476853c58128d 100644
+index 04a1c7b37e44de50a1a201df3d61255b3bcd9b3e..e4b7986b211d43dcbf72537c26d869fce4a87740 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -249,7 +249,7 @@ import javax.annotation.Nullable; // Paper

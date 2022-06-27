@@ -21,10 +21,10 @@ index 332b3c39b3ffdc4009d9be86403c6a48c48620cd..d80e6732b1c65dffc49fc4c81b5c076a
 +	}
  }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index e5c314235c8cf183bb3d3e873377994bf7a0439a..4a2c2160aa97d818dca0e366431429023d2a7460 100644
+index 4c9bbdc5e845543878515691c13d3c7003c95f56..864eae24eefe3fa96416a361452594a492e32022 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -1232,7 +1232,13 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -1233,7 +1233,13 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
                      this.tickServer(this::haveTime);
                      this.profiler.popPush("nextTickWait");
                      this.mayHaveDelayedTasks = true;
