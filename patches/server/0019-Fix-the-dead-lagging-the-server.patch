@@ -7,10 +7,10 @@ Original code by PurpurMC, licensed under MIT License
 You can find the original code on https://github.com/PurpurMC/Purpur
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 849e47c107a8233a2e8f5a52ff753c45225c160a..8c9cd527f9d37e60cb53247efbd5e78398c69c53 100644
+index 18be18c6960d8580c7ae8da86eb7b797e5086997..8542a26068a0ddaed9f886e7d572c5b578c0e438 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1874,6 +1874,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1875,6 +1875,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          this.yRotO = this.getYRot();
          this.xRotO = this.getXRot();
          this.setYHeadRot(yaw); // Paper - Update head rotation
@@ -19,7 +19,7 @@ index 849e47c107a8233a2e8f5a52ff753c45225c160a..8c9cd527f9d37e60cb53247efbd5e783
  
      public void absMoveTo(double x, double y, double z) {
 diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-index 3fadae80cfad24b528cfe710330992d310ff2f1d..e979889e7a650776f7c7aabd139e4018b2b5ecf4 100644
+index 18c17a195897b209db545e0661c193ed4b02afc1..7e098e6653bb727e53a689450924fcb9c892de25 100644
 --- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
 @@ -2967,7 +2967,7 @@ public abstract class LivingEntity extends Entity {

@@ -8,10 +8,10 @@ Original code by Akarin-project, licensed under GNU General Public License v3.0
 You can find the original code on https://github.com/Akarin-project/Akarin
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index e6d25ab2e7e19d9fb993fdad6f650212f560cc1d..8ecf75dd1a118cb0250dd91a56ab6e340482d8ba 100644
+index beab9f74ba3c3ef294485ee74daf165475d29566..247c8e23b80e8563ab4dce31673b80eb225fd08a 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1957,8 +1957,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1958,8 +1958,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      public void playerTouch(Player player) {}
  
      public void push(Entity entity) {
@@ -21,7 +21,7 @@ index e6d25ab2e7e19d9fb993fdad6f650212f560cc1d..8ecf75dd1a118cb0250dd91a56ab6e34
                  if (this.level.paperConfig().collisions.onlyPlayersCollide && !(entity instanceof ServerPlayer || this instanceof ServerPlayer)) return; // Paper
                  double d0 = entity.getX() - this.getX();
                  double d1 = entity.getZ() - this.getZ();
-@@ -1987,7 +1986,6 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1988,7 +1987,6 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
                      }
                  }
  
